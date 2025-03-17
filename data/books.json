@@ -1,0 +1,308 @@
+[
+  {
+    "name": "Old Testament Title Page",
+    "path": "/study/scriptures/ot/title-page",
+    "abbr": "OT Title Page"
+  },
+  {
+    "name": "Epistle Dedicatory",
+    "path": "/study/scriptures/ot/dedication",
+    "abbr": "OT Dedication"
+  },
+  { "name": "Genesis", "path": "/study/scriptures/ot/gen", "abbr": "Gen." },
+  { "name": "Exodus", "path": "/study/scriptures/ot/ex", "abbr": "Ex." },
+  { "name": "Leviticus", "path": "/study/scriptures/ot/lev", "abbr": "Lev." },
+  { "name": "Numbers", "path": "/study/scriptures/ot/num", "abbr": "Num." },
+  {
+    "name": "Deuteronomy",
+    "path": "/study/scriptures/ot/deut",
+    "abbr": "Deut."
+  },
+  { "name": "Joshua", "path": "/study/scriptures/ot/josh", "abbr": "Josh." },
+  { "name": "Judges", "path": "/study/scriptures/ot/judg", "abbr": "Judg." },
+  { "name": "Ruth", "path": "/study/scriptures/ot/ruth", "abbr": "Ruth" },
+  {
+    "name": "1 Samuel",
+    "path": "/study/scriptures/ot/1-sam",
+    "abbr": "1 Sam."
+  },
+  {
+    "name": "2 Samuel",
+    "path": "/study/scriptures/ot/2-sam",
+    "abbr": "2 Sam."
+  },
+  { "name": "1 Kings", "path": "/study/scriptures/ot/1-kgs", "abbr": "1 Kgs." },
+  { "name": "2 Kings", "path": "/study/scriptures/ot/2-kgs", "abbr": "2 Kgs." },
+  {
+    "name": "1 Chronicles",
+    "path": "/study/scriptures/ot/1-chr",
+    "abbr": "1 Chr."
+  },
+  {
+    "name": "2 Chronicles",
+    "path": "/study/scriptures/ot/2-chr",
+    "abbr": "2 Chr."
+  },
+  { "name": "Ezra", "path": "/study/scriptures/ot/ezra", "abbr": "Ezra" },
+  { "name": "Nehemiah", "path": "/study/scriptures/ot/neh", "abbr": "Neh." },
+  { "name": "Esther", "path": "/study/scriptures/ot/esth", "abbr": "Esth." },
+  { "name": "Job", "path": "/study/scriptures/ot/job", "abbr": "Job" },
+  { "name": "Psalms", "path": "/study/scriptures/ot/ps", "abbr": "Ps." },
+  { "name": "Proverbs", "path": "/study/scriptures/ot/prov", "abbr": "Prov." },
+  {
+    "name": "Ecclesiastes",
+    "path": "/study/scriptures/ot/eccl",
+    "abbr": "Eccl."
+  },
+  {
+    "name": "Song of Solomon",
+    "path": "/study/scriptures/ot/song",
+    "abbr": "Song"
+  },
+  { "name": "Isaiah", "path": "/study/scriptures/ot/isa", "abbr": "Isa." },
+  { "name": "Jeremiah", "path": "/study/scriptures/ot/jer", "abbr": "Jer." },
+  {
+    "name": "Lamentations",
+    "path": "/study/scriptures/ot/lam",
+    "abbr": "Lam."
+  },
+  { "name": "Ezekiel", "path": "/study/scriptures/ot/ezek", "abbr": "Ezek." },
+  { "name": "Daniel", "path": "/study/scriptures/ot/dan", "abbr": "Dan." },
+  { "name": "Hosea", "path": "/study/scriptures/ot/hosea", "abbr": "Hos." },
+  { "name": "Joel", "path": "/study/scriptures/ot/joel", "abbr": "Joel" },
+  { "name": "Amos", "path": "/study/scriptures/ot/amos", "abbr": "Amos" },
+  { "name": "Obadiah", "path": "/study/scriptures/ot/obad", "abbr": "Obad." },
+  { "name": "Jonah", "path": "/study/scriptures/ot/jonah", "abbr": "Jonah" },
+  { "name": "Micah", "path": "/study/scriptures/ot/micah", "abbr": "Mic." },
+  { "name": "Nahum", "path": "/study/scriptures/ot/nahum", "abbr": "Nah." },
+  { "name": "Habakkuk", "path": "/study/scriptures/ot/hab", "abbr": "Hab." },
+  { "name": "Zephaniah", "path": "/study/scriptures/ot/zeph", "abbr": "Zeph." },
+  { "name": "Haggai", "path": "/study/scriptures/ot/hag", "abbr": "Hag." },
+  { "name": "Zechariah", "path": "/study/scriptures/ot/zech", "abbr": "Zech." },
+  { "name": "Malachi", "path": "/study/scriptures/ot/mal", "abbr": "Mal." },
+  {
+    "name": "New Testament Title Page",
+    "path": "/study/scriptures/nt/title-page",
+    "abbr": "NT Title Page"
+  },
+  { "name": "Matthew", "path": "/study/scriptures/nt/matt", "abbr": "Matt." },
+  { "name": "Mark", "path": "/study/scriptures/nt/mark", "abbr": "Mark" },
+  { "name": "Luke", "path": "/study/scriptures/nt/luke", "abbr": "Luke" },
+  { "name": "John", "path": "/study/scriptures/nt/john", "abbr": "John" },
+  { "name": "Acts", "path": "/study/scriptures/nt/acts", "abbr": "Acts" },
+  { "name": "Romans", "path": "/study/scriptures/nt/rom", "abbr": "Rom." },
+  {
+    "name": "1 Corinthians",
+    "path": "/study/scriptures/nt/1-cor",
+    "abbr": "1 Cor."
+  },
+  {
+    "name": "2 Corinthians",
+    "path": "/study/scriptures/nt/2-cor",
+    "abbr": "2 Cor."
+  },
+  { "name": "Galatians", "path": "/study/scriptures/nt/gal", "abbr": "Gal." },
+  { "name": "Ephesians", "path": "/study/scriptures/nt/eph", "abbr": "Eph." },
+  {
+    "name": "Philippians",
+    "path": "/study/scriptures/nt/philip",
+    "abbr": "Phil."
+  },
+  { "name": "Colossians", "path": "/study/scriptures/nt/col", "abbr": "Col." },
+  {
+    "name": "1 Thessalonians",
+    "path": "/study/scriptures/nt/1-thes",
+    "abbr": "1 Thess."
+  },
+  {
+    "name": "2 Thessalonians",
+    "path": "/study/scriptures/nt/2-thes",
+    "abbr": "2 Thess."
+  },
+  {
+    "name": "1 Timothy",
+    "path": "/study/scriptures/nt/1-tim",
+    "abbr": "1 Tim."
+  },
+  {
+    "name": "2 Timothy",
+    "path": "/study/scriptures/nt/2-tim",
+    "abbr": "2 Tim."
+  },
+  { "name": "Titus", "path": "/study/scriptures/nt/titus", "abbr": "Titus" },
+  {
+    "name": "Philemon",
+    "path": "/study/scriptures/nt/philem",
+    "abbr": "Philem."
+  },
+  { "name": "Hebrews", "path": "/study/scriptures/nt/heb", "abbr": "Heb." },
+  { "name": "James", "path": "/study/scriptures/nt/james", "abbr": "James" },
+  { "name": "1 Peter", "path": "/study/scriptures/nt/1-pet", "abbr": "1 Pet." },
+  { "name": "2 Peter", "path": "/study/scriptures/nt/2-pet", "abbr": "2 Pet." },
+  { "name": "1 John", "path": "/study/scriptures/nt/1-jn", "abbr": "1 Jn." },
+  { "name": "2 John", "path": "/study/scriptures/nt/2-jn", "abbr": "2 Jn." },
+  { "name": "3 John", "path": "/study/scriptures/nt/3-jn", "abbr": "3 Jn." },
+  { "name": "Jude", "path": "/study/scriptures/nt/jude", "abbr": "Jude" },
+  { "name": "Revelation", "path": "/study/scriptures/nt/rev", "abbr": "Rev." },
+  {
+    "name": "Book of Mormon Title Page",
+    "path": "/study/scriptures/bofm/title-page",
+    "abbr": "BoM Title Page"
+  },
+  {
+    "name": "Title Page of the Book of Mormon",
+    "path": "/study/scriptures/bofm/bofm-title",
+    "abbr": "Title Page BoM"
+  },
+  {
+    "name": "Book of Mormon Introduction",
+    "path": "/study/scriptures/bofm/introduction",
+    "abbr": "BoM Intro."
+  },
+  {
+    "name": "Testimony of Three Witnesses",
+    "path": "/study/scriptures/bofm/three",
+    "abbr": "3 Witnesses"
+  },
+  {
+    "name": "Testimony of Eight Witnesses",
+    "path": "/study/scriptures/bofm/eight",
+    "abbr": "8 Witnesses"
+  },
+  {
+    "name": "Testimony of the Prophet Joseph Smith",
+    "path": "/study/scriptures/bofm/js",
+    "abbr": "JS Testimony"
+  },
+  {
+    "name": "Book of Mormon Explanation",
+    "path": "/study/scriptures/bofm/explanation",
+    "abbr": "BoM Explanation"
+  },
+  { "name": "1 Nephi", "path": "/study/scriptures/bofm/1-ne", "abbr": "1 Ne." },
+  { "name": "2 Nephi", "path": "/study/scriptures/bofm/2-ne", "abbr": "2 Ne." },
+  { "name": "Jacob", "path": "/study/scriptures/bofm/jacob", "abbr": "Jacob" },
+  {
+    "name": "Enos",
+    "path": "/study/scriptures/bofm/enos",
+    "abbr": "Enos",
+    "chapters": 1
+  },
+  {
+    "name": "Jarom",
+    "path": "/study/scriptures/bofm/jarom/1",
+    "abbr": "Jarom",
+    "chapters": 1
+  },
+  {
+    "name": "Omni",
+    "path": "/study/scriptures/bofm/omni",
+    "abbr": "Omni",
+    "chapters": 1
+  },
+  {
+    "name": "Words of Mormon",
+    "path": "/study/scriptures/bofm/w-of-m",
+    "abbr": "WoM",
+    "chapters": 1
+  },
+  {
+    "name": "Mosiah",
+    "path": "/study/scriptures/bofm/mosiah",
+    "abbr": "Mosiah"
+  },
+  { "name": "Alma", "path": "/study/scriptures/bofm/alma", "abbr": "Alma" },
+  { "name": "Helaman", "path": "/study/scriptures/bofm/hel", "abbr": "Hel." },
+  { "name": "3 Nephi", "path": "/study/scriptures/bofm/3-ne", "abbr": "3 Ne." },
+  {
+    "name": "4 Nephi",
+    "path": "/study/scriptures/bofm/4-ne",
+    "abbr": "4 Ne.",
+    "chapters": 1
+  },
+  { "name": "Mormon", "path": "/study/scriptures/bofm/morm", "abbr": "Morm." },
+  { "name": "Ether", "path": "/study/scriptures/bofm/ether", "abbr": "Ether" },
+  { "name": "Moroni", "path": "/study/scriptures/bofm/moro", "abbr": "Moro." },
+  {
+    "name": "Book of Mormon Pronunciation Guide",
+    "path": "/study/scriptures/bofm/pronunciation",
+    "abbr": "BoM Pron."
+  },
+  {
+    "name": "Reference Guide to the Book of Mormon",
+    "path": "/study/scriptures/bofm/reference",
+    "abbr": "BoM Ref."
+  },
+
+  {
+    "name": "Doctrine and Covenants Title Page",
+    "path": "/study/scriptures/dc-testament/title-page",
+    "abbr": "D&C Title Page"
+  },
+  {
+    "name": "Doctrine and Covenants Introduction",
+    "path": "/study/scriptures/dc-testament/introduction",
+    "abbr": "D&C Intro."
+  },
+  {
+    "name": "Chronological Order of Contents",
+    "path": "/study/scriptures/dc-testament/chron-order",
+    "abbr": "D&C Chron."
+  },
+  {
+    "name": "Doctrine and Covenants",
+    "path": "/study/scriptures/dc-testament/dc",
+    "abbr": "D&C"
+  },
+  {
+    "name": "Official Declaration 1",
+    "path": "/study/scriptures/dc-testament/od/1",
+    "abbr": "O.D. 1"
+  },
+  {
+    "name": "Official Declaration 2",
+    "path": "/study/scriptures/dc-testament/od/2",
+    "abbr": "O.D. 2"
+  },
+
+  {
+    "name": "Title Page of the Pearl of Great Price",
+    "path": "/study/scriptures/pgp/title-page",
+    "abbr": "PGP Title Page"
+  },
+  {
+    "name": "Introduction to the Pearl of Great Price",
+    "path": "/study/scriptures/pgp/introduction",
+    "abbr": "PGP Intro."
+  },
+  {
+    "name": "Moses",
+    "path": "/study/scriptures/pgp/moses",
+    "abbr": "Moses",
+    "chapters": 8
+  },
+  {
+    "name": "Abraham",
+    "path": "/study/scriptures/pgp/abr",
+    "abbr": "Abr.",
+    "chapters": 5
+  },
+  {
+    "name": "Joseph Smith—Matthew",
+    "path": "/study/scriptures/pgp/js-m",
+    "abbr": "JS-M",
+    "chapters": 1
+  },
+  {
+    "name": "Joseph Smith—History",
+    "path": "/study/scriptures/pgp/js-h",
+    "abbr": "JS-H",
+    "chapters": 1
+  },
+  {
+    "name": "Articles of Faith",
+    "path": "/study/scriptures/pgp/a-of-f",
+    "abbr": "A of F",
+    "chapters": 1
+  }
+]
