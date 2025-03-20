@@ -3,8 +3,7 @@ import { CopyBtn } from "../islands/CopyBtn.tsx";
 interface Props {
   book: Book;
   chapter?: number;
-  start?: number;
-  end?: number;
+  ranges: VerseRange;
   lang?: string;
   domain?: string;
 }
@@ -15,25 +14,38 @@ export default function ScriptureReference(props: Props) {
     domain = "https://www.churchofjesuschrist.org",
     book,
     chapter,
-    start,
-    end,
+    ranges,
   } = props;
 
   const chapterPath = chapter ? "/" + chapter : "";
-  const anchor = start ? "#" + start : "";
-  let highlights = "";
-  if (start) {
-    highlights += "&id=p" + start;
+
+  const firstRange = ranges[0];
+  const anchor = firstRange
+    ? "#p" +
+      (Array.isArray(firstRange)
+        ? (firstRange as [number, number])[0]
+        : firstRange)
+    : "";
+
+  const ps: string[] = [];
+  const verses: string[] = [];
+  for (const r of ranges) {
+    if (Array.isArray(r)) {
+      ps.push(`p${r[0]}-p${r[1]}`);
+      verses.push(`${r[0]}-${r[1]}`);
+    } else {
+      ps.push(`p${r}`);
+      verses.push(r.toString());
+    }
   }
-  if (start && end) {
-    highlights += "-p" + end;
-  }
+
+  const highlights = ranges.length ? "&id=" + ps.join(",") : "";
 
   const link =
     `${domain}${book.path}${chapterPath}${lang}${highlights}${anchor}`;
 
-  const numbers = `${chapter || ""}${start ? ":" + start : ""}${
-    start && end ? "-" + end : ""
+  const numbers = `${chapter || ""}${verses.length ? ":" : ""}${
+    verses.join(", ")
   }`;
 
   const long = `${book.name} ${numbers}`.trim();

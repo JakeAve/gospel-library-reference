@@ -4,3 +4,5 @@ interface Book {
   abbr: string;
   chapters?: number;
 }
+
+type VerseRange = (number | [number, number])[];

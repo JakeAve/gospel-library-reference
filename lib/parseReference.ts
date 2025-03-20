@@ -6,8 +6,7 @@ export function parseReference(
 ): {
   book: Book;
   chapter: number | undefined;
-  start: number | undefined;
-  end: number | undefined;
+  ranges: VerseRange;
 } {
   input = input.trim();
   const digits = [...input.matchAll(/\d+/g)];
@@ -22,18 +21,41 @@ export function parseReference(
     }
   }
 
-  let start: undefined | number;
-  const stMatches = input.match(/:(\d+)/);
+  const colonIdx = /:/.exec(input)?.index;
+  const ranges: VerseRange = [];
 
-  if (stMatches?.length) {
-    start = Number(stMatches[1]);
-  }
+  if (colonIdx && colonIdx > 0) {
+    const vStrings = input.slice(colonIdx + 1);
+    const verses = vStrings.split(",");
 
-  let end: undefined | number;
-  const endMatches = input.match(/:\d+.+?(\d+)/);
+    for (const v of verses) {
+      if (v.match("-")) {
+        const vNums = v.match(/\d+/g);
+        if (vNums) {
+          const range: number[] = [];
+          for (const vn of vNums) {
+            range.push(Number(vn));
+          }
+          ranges.push(range.toSorted((a, b) => a - b) as [number, number]);
+        }
+      } else if (v) {
+        const vNum = v.match(/\d+/);
+        ranges.push(Number(vNum));
+      }
+    }
 
-  if (endMatches?.length) {
-    end = Number(endMatches[1]);
+    ranges.sort((a, b) => {
+      const minA = Math.min(Array.isArray(a) ? (a[0], a[1]) : a);
+      const minB = Math.min(Array.isArray(b) ? (b[0], b[1]) : b);
+
+      if (minA > minB) {
+        return 1;
+      }
+      if (minA < minB) {
+        return -1;
+      }
+      return 0;
+    });
   }
 
   const bookEndIdx = digits.length ? digits[1]?.index : undefined;
@@ -68,7 +90,6 @@ export function parseReference(
   return {
     book,
     chapter,
-    start,
-    end,
+    ranges,
   };
 }

@@ -11,8 +11,7 @@ Deno.test("Is fine without an end", () => {
       "abbr": "1 Ne.",
     },
     chapter: 3,
-    start: 7,
-    end: undefined,
+    ranges: [7],
   });
 });
 
@@ -26,8 +25,7 @@ Deno.test("Finds the end", () => {
       abbr: "1 Cor.",
     },
     chapter: 15,
-    start: 40,
-    end: 46,
+    ranges: [[40, 46]],
   });
 });
 
@@ -41,8 +39,7 @@ Deno.test("Finds without verses", () => {
       abbr: "Jacob",
     },
     chapter: 5,
-    start: undefined,
-    end: undefined,
+    ranges: [],
   });
 });
 
@@ -54,11 +51,10 @@ Deno.test("Finds book", () => {
       "name": "Omni",
       "path": "/study/scriptures/bofm/omni",
       "abbr": "Omni",
-      chapters: 1
+      chapters: 1,
     },
     chapter: 1,
-    start: undefined,
-    end: undefined,
+    ranges: [],
   });
 });
 
@@ -72,12 +68,11 @@ Deno.test("Finds D&C", () => {
       "abbr": "D&C",
     },
     chapter: 20,
-    start: 1,
-    end: undefined,
+    ranges: [1],
   });
 });
 
-Deno.test("Finds ranges", () => {
+Deno.test("Finds single verse", () => {
   const ref = parseReference("Exodus 20:13");
 
   assertEquals(ref, {
@@ -87,7 +82,62 @@ Deno.test("Finds ranges", () => {
       "abbr": "Ex.",
     },
     chapter: 20,
-    start: 13,
-    end: undefined,
+    ranges: [13],
+  });
+});
+
+Deno.test("Finds range of verses", () => {
+  const ref = parseReference("Mosiah 4:15-19");
+
+  assertEquals(ref, {
+    book: {
+      "name": "Mosiah",
+      "path": "/study/scriptures/bofm/mosiah",
+      "abbr": "Mosiah",
+    },
+    chapter: 4,
+    ranges: [[15, 19]],
+  });
+});
+
+Deno.test("Finds ranges of verses", () => {
+  const ref = parseReference("Ether 12:4-27, 28-30, 31");
+
+  assertEquals(ref, {
+    book: {
+      "name": "Ether",
+      "path": "/study/scriptures/bofm/ether",
+      "abbr": "Ether",
+    },
+    chapter: 12,
+    ranges: [[4, 27], [28, 30], 31],
+  });
+});
+
+Deno.test("Sorts verse ranges", () => {
+  const ref = parseReference("John 17:9-10,6-1, ");
+
+  assertEquals(ref, {
+    book: {
+      "name": "John",
+      "path": "/study/scriptures/nt/john",
+      "abbr": "John",
+    },
+    chapter: 17,
+    ranges: [[1, 6], [9, 10]],
+  });
+});
+
+Deno.test("Only book", () => {
+  const ref = parseReference("Mormon");
+
+  assertEquals(ref, {
+    book: {
+      "name": "Mormon",
+      "path": "/study/scriptures/bofm/morm",
+      "abbr": "Morm.",
+    },
+    chapter: undefined,
+    ranges: [],
   });
 });
