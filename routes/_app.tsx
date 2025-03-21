@@ -8,7 +8,7 @@ export default function App({ Component }: PageProps) {
         <title>Gospel Library Link</title>
         <link rel="stylesheet" href="/styles.css" />
       </head>
-      <body>
+      <body class="dark:bg-neutral-800 dark:text-neutral-200">
         <Component />
       </body>
     </html>
