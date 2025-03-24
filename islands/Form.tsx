@@ -1,37 +1,91 @@
-import { computed, Signal } from "@preact/signals";
+import { computed, signal } from "@preact/signals";
 
 import { parseReference } from "../lib/parseReference.ts";
 import ScriptureReference from "../components/ScriptureReference.tsx";
+import { IS_BROWSER } from "$fresh/runtime.ts";
+import { add, getAll } from "../lib/indexedDb.ts";
+import { JSX } from "preact/jsx-runtime";
 
-const input = new Signal("");
+const input = signal("");
 
 export default function Form() {
+  if (!IS_BROWSER) {
+    return <></>;
+  }
+
   function format(e: InputEvent) {
     const inputField = e.target as HTMLInputElement;
     const text = inputField.value;
     input.value = text;
   }
 
-  const suggestions = computed(() => {
+  const reference = computed(() => {
     const val = input.value;
-
-    if (val.trim() === "") return <></>;
-
-    const reference = parseReference(val);
-    return <ScriptureReference {...reference} />;
+    if (val.trim() === "") return "";
+    return parseReference(val);
   });
 
+  const linkElement = computed(() => {
+    const ref = reference.value;
+    if (!ref) return <></>;
+    return <ScriptureReference {...ref} />;
+  });
+
+  const storedRefs = signal<JSX.Element>(<></>);
+
+  async function addReference(e: SubmitEvent) {
+    e.preventDefault();
+    const ref = reference.value;
+    if (ref) {
+      await add(ref);
+    }
+
+    getReferences();
+  }
+
+  async function getReferences() {
+    const refs = await getAll();
+
+    const El = () => (
+      <div class="border-t flex flex-col gap-2 text-sm">
+        <h2 class="tracking-widest mt-2 px-2">History</h2>
+        {refs.map((obj, i) => (
+          <div key={i} class="odd:bg-neutral-200 odd:dark:bg-neutral-700 px-2 py-3">
+            <ScriptureReference {...obj} />
+          </div>
+        ))}
+      </div>
+    );
+
+    storedRefs.value = <El />;
+  }
+
+  getReferences();
+
   return (
-    <form class="grid gap-2" autoComplete="off">
-      <label class="text-xl font-light" for="reference">Type scripture reference</label>
-      <input
-        class="text-xl font-light border-b-2 px-1 py-1 bg-transparent dark:border-neutral-400 dark:focus:border-neutral-200 focus:border-black outline-none w-72"
-        name="reference"
-        id="reference"
-        autoFocus
-        onInput={format}
-      />
-      <div>{suggestions}</div>
+    <form class="grid gap-2 group" autoComplete="off" onSubmit={addReference}>
+      <label class="text-xl font-light" for="reference">
+        Type scripture reference
+      </label>
+      <div class="flex gap-2">
+        <input
+          class="text-xl font-light border-b-2 px-1 py-1 bg-transparent dark:border-neutral-400 dark:focus:border-neutral-200 focus:border-black outline-none w-72"
+          name="reference"
+          id="reference"
+          autoFocus
+          onInput={format}
+        />
+        <button
+          class="font-bold text-blue-500 hover:text-blue-700 focus:text-blue-700 dark:text-blue-400 dark:hover:text-blue-200 dark:focus:text-blue-200 p-2 border-2 border-blue-500 hover:border-blue-700 focus:border-blue-700 dark:border-blue-400 dark:hover:border-blue-200 dark:focus:border-blue-200 rounded-md h-9 w-9 flex justify-center items-center active:scale-90"
+          aria-label="Add reference"
+          title="Add reference"
+          type="submit"
+        >
+          +
+        </button>
+      </div>
+      <div class="my-4">{linkElement}</div>
+      {storedRefs}
     </form>
   );
 }

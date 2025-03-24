@@ -3,11 +3,7 @@ import { distance } from "./levanstein.ts";
 
 export function parseReference(
   input: string,
-): {
-  book: Book;
-  chapter: number | undefined;
-  ranges: VerseRange;
-} {
+): Reference {
   input = input.trim();
   const digits = [...input.matchAll(/\d+/g)];
 
@@ -29,7 +25,7 @@ export function parseReference(
     const verses = vStrings.split(",");
 
     for (const v of verses) {
-      if (v.match("-")) {
+      if (v.match(/-|–/)) {
         const vNums = v.match(/\d+/g);
         if (vNums) {
           const range: number[] = [];

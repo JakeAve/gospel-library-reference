@@ -141,3 +141,17 @@ Deno.test("Only book", () => {
     ranges: [],
   });
 });
+
+Deno.test("Can pick up other symbols", () => {
+  const ref = parseReference("1 Corinthians 12:12–27");
+
+  assertEquals(ref, {
+    book: {
+      "name": "1 Corinthians",
+      "path": "/study/scriptures/nt/1-cor",
+      "abbr": "1 Cor.",
+    },
+    chapter: 12,
+    ranges: [[12, 27]],
+  });
+});
