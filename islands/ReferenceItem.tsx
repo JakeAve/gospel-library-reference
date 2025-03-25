@@ -1,6 +1,6 @@
 import { useRef } from "preact/hooks";
 import ScriptureReference from "../components/ScriptureReference.tsx";
-import { deleteById, RefWithId } from "../lib/indexedDb.ts";
+import { deleteById, RefWithId } from "../lib/indexedDB.ts";
 
 interface Props extends RefWithId {
   deleteCallback: () => void;
