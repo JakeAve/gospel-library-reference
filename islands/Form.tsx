@@ -31,7 +31,7 @@ export default function Form() {
     const ref = reference.value;
     if (!ref) return;
     return (
-      <div class="text-lg">
+      <div class="text-lg ">
         <ScriptureReference {...ref} />
       </div>
     );
@@ -58,34 +58,34 @@ export default function Form() {
   }
 
   return (
-    <div class="mx-auto max-w-lg flex flex-col gap-8">
-      <form class="grid gap-2" autoComplete="off" onSubmit={addReference}>
-        <label class="text-xl font-light" for="reference">
-          Type scripture reference
-        </label>
-        <div class="flex gap-2">
-          <input
-            class="text-xl flex-auto font-light border-b-2 px-1 py-1 bg-transparent dark:border-neutral-400 dark:focus:border-neutral-200 focus:border-black outline-none"
-            name="reference"
-            id="reference"
-            autoFocus
-            onInput={format}
-          />
-          <button
-            class="font-bold text-blue-500 hover:text-blue-700 focus:text-blue-700 dark:text-blue-400 dark:hover:text-blue-200 dark:focus:text-blue-200 p-2 border-2 border-blue-500 hover:border-blue-700 focus:border-blue-700 dark:border-blue-400 dark:hover:border-blue-200 dark:focus:border-blue-200 rounded-md h-9 w-9 flex justify-center items-center active:scale-90"
-            aria-label="Add reference"
-            title="Add reference"
-            type="submit"
-          >
-            +
-          </button>
-        </div>
-      </form>
-      {linkElement}
+    <div class="mx-auto max-w-lg relative">
+      <div class="flex flex-col gap-8 sticky top-0 px-2 py-8 bg-blue-500/5 backdrop-blur-3xl rounded-md">
+        <form class="grid gap-2" autoComplete="off" onSubmit={addReference}>
+          <label class="text-xl font-light" for="reference">
+            Type scripture reference
+          </label>
+          <div class="flex gap-2">
+            <input
+              class="text-xl rounded-none flex-auto font-light border-b-2 px-1 py-1 bg-transparent dark:border-neutral-400 dark:focus:border-neutral-200 focus:border-black outline-none"
+              name="reference"
+              id="reference"
+              autoFocus
+              onInput={format}
+            />
+            <button
+              class="font-bold text-blue-500 hover:text-blue-700 focus:text-blue-700 dark:text-blue-400 dark:hover:text-blue-200 dark:focus:text-blue-200 p-2 border-2 border-blue-500 hover:border-blue-700 focus:border-blue-700 dark:border-blue-400 dark:hover:border-blue-200 dark:focus:border-blue-200 rounded-md h-9 w-9 flex justify-center items-center active:scale-90"
+              aria-label="Add reference"
+              title="Add reference"
+              type="submit"
+            >
+              +
+            </button>
+          </div>
+        </form>
+        {linkElement}
+      </div>
       <div
-        class={`${
-          reference.value ? "border-t pt-8" : ""
-        } flex flex-col gap-2 text-sm`}
+        class={`flex flex-col gap-2 text-sm mt-4`}
       >
         <h2 class="tracking-widest px-2">History</h2>
         {storedRefs}

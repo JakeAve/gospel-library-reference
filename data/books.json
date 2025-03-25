@@ -9,141 +9,492 @@
     "path": "/study/scriptures/ot/dedication",
     "abbr": "OT Dedication"
   },
-  { "name": "Genesis", "path": "/study/scriptures/ot/gen", "abbr": "Gen." },
-  { "name": "Exodus", "path": "/study/scriptures/ot/ex", "abbr": "Ex." },
-  { "name": "Leviticus", "path": "/study/scriptures/ot/lev", "abbr": "Lev." },
-  { "name": "Numbers", "path": "/study/scriptures/ot/num", "abbr": "Num." },
+  {
+    "name": "Genesis",
+    "path": "/study/scriptures/ot/gen",
+    "abbr": "Gen.",
+    "chapters": [
+      31, 25, 24, 26, 32, 22, 24, 22, 29, 32, 32, 20, 18, 24, 21, 16, 27, 33,
+      38, 18, 34, 24, 20, 67, 34, 35, 46, 22, 35, 43, 55, 32, 20, 31, 40, 22,
+      33, 43, 38, 23, 57, 38, 34, 34, 28, 34, 31, 22, 33, 26
+    ]
+  },
+  {
+    "name": "Exodus",
+    "path": "/study/scriptures/ot/ex",
+    "abbr": "Ex.",
+    "chapters": [
+      22, 25, 22, 31, 23, 30, 29, 28, 35, 29, 10, 51, 22, 31, 27, 36, 16, 27,
+      25, 26, 37, 30, 33, 18, 40, 37, 21, 43, 46, 38, 18, 35, 23, 35, 35, 38,
+      29, 31, 43, 38
+    ]
+  },
+  {
+    "name": "Leviticus",
+    "path": "/study/scriptures/ot/lev",
+    "abbr": "Lev.",
+    "chapters": [
+      [
+        17, 16, 17, 35, 19, 30, 38, 36, 24, 20, 47, 8, 59, 57, 33, 34, 16, 30,
+        37, 27, 24, 33, 44, 23, 55, 46, 34
+      ]
+    ]
+  },
+  {
+    "name": "Numbers",
+    "path": "/study/scriptures/ot/num",
+    "abbr": "Num.",
+    "chapters": [
+      54, 34, 51, 49, 31, 27, 89, 26, 23, 36, 35, 16, 33, 45, 41, 50, 13, 32,
+      22, 29, 35, 41, 30, 25, 19, 65, 23, 31, 40, 16, 54, 42, 56, 29, 34, 13
+    ]
+  },
   {
     "name": "Deuteronomy",
     "path": "/study/scriptures/ot/deut",
-    "abbr": "Deut."
+    "abbr": "Deut.",
+    "chapters": [
+      46, 37, 29, 49, 33, 25, 26, 20, 29, 22, 32, 32, 18, 29, 23, 22, 20, 22,
+      21, 20, 23, 30, 25, 22, 19, 19, 26, 68, 29, 20, 30, 52, 29, 12
+    ]
   },
-  { "name": "Joshua", "path": "/study/scriptures/ot/josh", "abbr": "Josh." },
-  { "name": "Judges", "path": "/study/scriptures/ot/judg", "abbr": "Judg." },
-  { "name": "Ruth", "path": "/study/scriptures/ot/ruth", "abbr": "Ruth" },
+  {
+    "name": "Joshua",
+    "path": "/study/scriptures/ot/josh",
+    "abbr": "Josh.",
+    "chapters": [
+      18, 24, 17, 25, 15, 27, 26, 35, 27, 43, 23, 24, 33, 15, 63, 10, 18, 28,
+      51, 9, 45, 34
+    ]
+  },
+  {
+    "name": "Judges",
+    "path": "/study/scriptures/ot/judg",
+    "abbr": "Judg.",
+    "chapters": [
+      36, 23, 31, 24, 31, 40, 25, 35, 57, 18, 40, 15, 25, 20, 20, 31, 13, 31,
+      30, 48, 25
+    ]
+  },
+  {
+    "name": "Ruth",
+    "path": "/study/scriptures/ot/ruth",
+    "abbr": "Ruth",
+    "chapters": [22, 23, 18, 22]
+  },
   {
     "name": "1 Samuel",
     "path": "/study/scriptures/ot/1-sam",
-    "abbr": "1 Sam."
+    "abbr": "1 Sam.",
+    "chapters": [
+      28, 36, 21, 22, 12, 21, 17, 22, 27, 27, 15, 25, 23, 52, 35, 23, 58, 30,
+      24, 43, 15, 23, 29, 22, 44, 25, 12, 25, 11, 31
+    ]
   },
   {
     "name": "2 Samuel",
     "path": "/study/scriptures/ot/2-sam",
-    "abbr": "2 Sam."
+    "abbr": "2 Sam.",
+    "chapters": [
+      27, 32, 39, 12, 25, 23, 29, 18, 38, 24, 27, 31, 39, 33, 37, 23, 29, 33,
+      43, 26, 22, 51, 39, 25
+    ]
   },
-  { "name": "1 Kings", "path": "/study/scriptures/ot/1-kgs", "abbr": "1 Kgs." },
-  { "name": "2 Kings", "path": "/study/scriptures/ot/2-kgs", "abbr": "2 Kgs." },
+  {
+    "name": "1 Kings",
+    "path": "/study/scriptures/ot/1-kgs",
+    "abbr": "1 Kgs.",
+    "chapters": [
+      53, 46, 28, 34, 32, 38, 50, 66, 29, 43, 29, 42, 34, 31, 34, 23, 24, 46,
+      21, 43, 29, 53
+    ]
+  },
+  {
+    "name": "2 Kings",
+    "path": "/study/scriptures/ot/2-kgs",
+    "abbr": "2 Kgs.",
+    "chapters": [
+      18, 25, 27, 44, 27, 33, 20, 29, 37, 36, 21, 21, 25, 29, 38, 20, 41, 37,
+      37, 29, 21, 20, 37, 20, 30
+    ]
+  },
   {
     "name": "1 Chronicles",
     "path": "/study/scriptures/ot/1-chr",
-    "abbr": "1 Chr."
+    "abbr": "1 Chr.",
+    "chapters": [
+      54, 55, 24, 43, 26, 81, 40, 40, 44, 14, 47, 40, 14, 17, 29, 43, 27, 17,
+      19, 8, 30, 19, 32, 31, 31, 32, 34, 21, 30
+    ]
   },
   {
     "name": "2 Chronicles",
     "path": "/study/scriptures/ot/2-chr",
-    "abbr": "2 Chr."
+    "abbr": "2 Chr.",
+    "chapters": [
+      17, 18, 29, 23, 14, 42, 22, 18, 31, 19, 23, 40, 14, 17, 23, 27, 19, 23,
+      11, 37, 20, 21, 10, 21, 18, 23, 9, 27, 36
+    ]
   },
-  { "name": "Ezra", "path": "/study/scriptures/ot/ezra", "abbr": "Ezra" },
-  { "name": "Nehemiah", "path": "/study/scriptures/ot/neh", "abbr": "Neh." },
-  { "name": "Esther", "path": "/study/scriptures/ot/esth", "abbr": "Esth." },
-  { "name": "Job", "path": "/study/scriptures/ot/job", "abbr": "Job" },
-  { "name": "Psalms", "path": "/study/scriptures/ot/ps", "abbr": "Ps." },
-  { "name": "Proverbs", "path": "/study/scriptures/ot/prov", "abbr": "Prov." },
+  {
+    "name": "Ezra",
+    "path": "/study/scriptures/ot/ezra",
+    "abbr": "Ezra",
+    "chapters": [[11, 70, 13, 24, 17, 22, 28, 36, 15, 44]]
+  },
+  {
+    "name": "Nehemiah",
+    "path": "/study/scriptures/ot/neh",
+    "abbr": "Neh.",
+    "chapters": [11, 20, 38, 17, 19, 19, 73, 18, 37, 40, 36, 47, 31]
+  },
+  {
+    "name": "Esther",
+    "path": "/study/scriptures/ot/esth",
+    "abbr": "Esth.",
+    "chapters": [22, 23, 15, 17, 14, 14, 10, 17, 32, 3]
+  },
+  {
+    "name": "Job",
+    "path": "/study/scriptures/ot/job",
+    "abbr": "Job",
+    "chapters": [
+      22, 13, 26, 21, 27, 27, 30, 22, 35, 22, 20, 25, 28, 22, 35, 22, 16, 21,
+      29, 29, 34, 30, 17, 25, 6, 14, 23, 28, 25, 31, 40, 22, 33, 37, 16
+    ]
+  },
+  {
+    "name": "Psalms",
+    "path": "/study/scriptures/ot/ps",
+    "abbr": "Ps.",
+    "chapters": [
+      6, 12, 8, 8, 12, 10, 17, 9, 20, 18, 7, 8, 6, 7, 5, 11, 15, 50, 14, 9, 13,
+      31, 6, 10, 22, 12, 14, 9, 11, 12, 24, 11, 22, 22, 28, 12, 40, 22, 13, 17,
+      13, 11, 5, 26, 17, 11, 9, 14, 20, 23, 19, 9, 6, 7, 23, 13, 11, 11, 17, 12,
+      8, 12, 11, 6, 10, 13, 20, 7, 35, 36, 5, 24, 20, 28, 23, 10, 12, 20, 72,
+      13, 19, 16, 8, 18, 12, 5, 12, 15, 10, 10, 19, 17, 8, 18, 2, 29, 176, 7, 8,
+      9, 4, 8, 5, 6, 5, 6, 8, 8, 3, 18, 3, 3, 21, 26, 9, 8, 24, 14, 10, 7, 12,
+      15, 21, 10, 20, 14, 9, 6
+    ]
+  },
+  {
+    "name": "Proverbs",
+    "path": "/study/scriptures/ot/prov",
+    "abbr": "Prov.",
+    "chapters": [
+      33, 22, 35, 27, 23, 35, 27, 36, 18, 32, 31, 28, 25, 35, 33, 33, 28, 24,
+      29, 30, 31, 29, 35, 34, 28, 28, 27, 30, 33, 31, 29
+    ]
+  },
   {
     "name": "Ecclesiastes",
     "path": "/study/scriptures/ot/eccl",
-    "abbr": "Eccl."
+    "abbr": "Eccl.",
+    "chapters": [18, 26, 22, 16, 20, 12, 29, 18, 10, 20, 13, 14]
   },
   {
     "name": "Song of Solomon",
     "path": "/study/scriptures/ot/song",
-    "abbr": "Song"
+    "abbr": "Song",
+    "chapters": [17, 17, 11, 16, 16, 12, 14, 14]
   },
-  { "name": "Isaiah", "path": "/study/scriptures/ot/isa", "abbr": "Isa." },
-  { "name": "Jeremiah", "path": "/study/scriptures/ot/jer", "abbr": "Jer." },
+  {
+    "name": "Isaiah",
+    "path": "/study/scriptures/ot/isa",
+    "abbr": "Isa.",
+    "chapters": [
+      31, 22, 26, 6, 30, 13, 25, 23, 20, 34, 16, 6, 22, 32, 9, 14, 14, 7, 25, 6,
+      17, 25, 18, 23, 12, 21, 13, 29, 24, 33, 9, 20, 24, 17, 10, 22, 38, 22, 8,
+      31, 26, 25, 18, 25, 24, 26, 6, 11, 23, 15, 12, 17, 10, 24, 13, 17, 12, 21,
+      14, 21, 20, 21, 11, 22, 13, 12
+    ]
+  },
+  {
+    "name": "Jeremiah",
+    "path": "/study/scriptures/ot/jer",
+    "abbr": "Jer.",
+    "chapters": [
+      19, 37, 25, 31, 31, 30, 34, 22, 26, 25, 23, 17, 27, 22, 21, 21, 27, 23,
+      15, 18, 14, 30, 40, 10, 38, 24, 22, 17, 32, 24, 40, 44, 26, 22, 19, 32,
+      21, 28, 18, 16, 18, 22, 13, 30, 5, 28, 7, 47, 39, 46, 64, 34
+    ]
+  },
   {
     "name": "Lamentations",
     "path": "/study/scriptures/ot/lam",
-    "abbr": "Lam."
+    "abbr": "Lam.",
+    "chapters": [22, 22, 66, 22, 22]
   },
-  { "name": "Ezekiel", "path": "/study/scriptures/ot/ezek", "abbr": "Ezek." },
-  { "name": "Daniel", "path": "/study/scriptures/ot/dan", "abbr": "Dan." },
-  { "name": "Hosea", "path": "/study/scriptures/ot/hosea", "abbr": "Hos." },
-  { "name": "Joel", "path": "/study/scriptures/ot/joel", "abbr": "Joel" },
-  { "name": "Amos", "path": "/study/scriptures/ot/amos", "abbr": "Amos" },
-  { "name": "Obadiah", "path": "/study/scriptures/ot/obad", "abbr": "Obad." },
-  { "name": "Jonah", "path": "/study/scriptures/ot/jonah", "abbr": "Jonah" },
-  { "name": "Micah", "path": "/study/scriptures/ot/micah", "abbr": "Mic." },
-  { "name": "Nahum", "path": "/study/scriptures/ot/nahum", "abbr": "Nah." },
-  { "name": "Habakkuk", "path": "/study/scriptures/ot/hab", "abbr": "Hab." },
-  { "name": "Zephaniah", "path": "/study/scriptures/ot/zeph", "abbr": "Zeph." },
-  { "name": "Haggai", "path": "/study/scriptures/ot/hag", "abbr": "Hag." },
-  { "name": "Zechariah", "path": "/study/scriptures/ot/zech", "abbr": "Zech." },
-  { "name": "Malachi", "path": "/study/scriptures/ot/mal", "abbr": "Mal." },
+  {
+    "name": "Ezekiel",
+    "path": "/study/scriptures/ot/ezek",
+    "abbr": "Ezek.",
+    "chapters": [
+      28, 10, 27, 17, 17, 14, 27, 18, 11, 22, 25, 28, 23, 23, 8, 63, 24, 32, 14,
+      49, 32, 31, 49, 27, 17, 21, 36, 26, 21, 26, 18, 32, 33, 31, 15, 38, 28,
+      23, 29, 49, 26, 20, 27, 31, 25, 24, 23, 35
+    ]
+  },
+  {
+    "name": "Daniel",
+    "path": "/study/scriptures/ot/dan",
+    "abbr": "Dan.",
+    "chapters": [21, 49, 30, 37, 31, 28, 28, 27, 27, 21, 45, 13]
+  },
+  {
+    "name": "Hosea",
+    "path": "/study/scriptures/ot/hosea",
+    "abbr": "Hos.",
+    "chapters": [11, 23, 5, 19, 15, 11, 16, 14, 17, 15, 12, 14, 16, 9]
+  },
+  {
+    "name": "Joel",
+    "path": "/study/scriptures/ot/joel",
+    "abbr": "Joel",
+    "chapters": [20, 32, 21]
+  },
+  {
+    "name": "Amos",
+    "path": "/study/scriptures/ot/amos",
+    "abbr": "Amos",
+    "chapters": [15, 16, 15, 13, 27, 14, 17, 14, 15]
+  },
+  {
+    "name": "Obadiah",
+    "path": "/study/scriptures/ot/obad",
+    "abbr": "Obad.",
+    "chapters": [21]
+  },
+  {
+    "name": "Jonah",
+    "path": "/study/scriptures/ot/jonah",
+    "abbr": "Jonah",
+    "chapters": [17, 10, 10, 11]
+  },
+  {
+    "name": "Micah",
+    "path": "/study/scriptures/ot/micah",
+    "abbr": "Mic.",
+    "chapters": [16, 13, 12, 13, 15, 16, 20]
+  },
+  {
+    "name": "Nahum",
+    "path": "/study/scriptures/ot/nahum",
+    "abbr": "Nah.",
+    "chapters": [15, 13, 19]
+  },
+  {
+    "name": "Habakkuk",
+    "path": "/study/scriptures/ot/hab",
+    "abbr": "Hab.",
+    "chapters": [17, 20, 19]
+  },
+  {
+    "name": "Zephaniah",
+    "path": "/study/scriptures/ot/zeph",
+    "abbr": "Zeph.",
+    "chapters": [18, 15, 20]
+  },
+  {
+    "name": "Haggai",
+    "path": "/study/scriptures/ot/hag",
+    "abbr": "Hag.",
+    "chapters": [15, 23]
+  },
+  {
+    "name": "Zechariah",
+    "path": "/study/scriptures/ot/zech",
+    "abbr": "Zech.",
+    "chapters": [21, 13, 10, 14, 11, 15, 14, 23, 17, 12, 17, 14, 9, 21]
+  },
+  {
+    "name": "Malachi",
+    "path": "/study/scriptures/ot/mal",
+    "abbr": "Mal.",
+    "chapters": [14, 17, 18, 6]
+  },
   {
     "name": "New Testament Title Page",
     "path": "/study/scriptures/nt/title-page",
     "abbr": "NT Title Page"
   },
-  { "name": "Matthew", "path": "/study/scriptures/nt/matt", "abbr": "Matt." },
-  { "name": "Mark", "path": "/study/scriptures/nt/mark", "abbr": "Mark" },
-  { "name": "Luke", "path": "/study/scriptures/nt/luke", "abbr": "Luke" },
-  { "name": "John", "path": "/study/scriptures/nt/john", "abbr": "John" },
-  { "name": "Acts", "path": "/study/scriptures/nt/acts", "abbr": "Acts" },
-  { "name": "Romans", "path": "/study/scriptures/nt/rom", "abbr": "Rom." },
+  {
+    "name": "Matthew",
+    "path": "/study/scriptures/nt/matt",
+    "abbr": "Matt.",
+    "chapters": [
+      25, 23, 17, 25, 48, 34, 29, 34, 38, 42, 30, 50, 58, 36, 39, 28, 27, 35,
+      30, 34, 46, 46, 39, 51, 46, 75, 66, 20
+    ]
+  },
+  {
+    "name": "Mark",
+    "path": "/study/scriptures/nt/mark",
+    "abbr": "Mark",
+    "chapters": [45, 28, 35, 41, 43, 56, 37, 38, 50, 52, 33, 44, 37, 72, 47, 20]
+  },
+  {
+    "name": "Luke",
+    "path": "/study/scriptures/nt/luke",
+    "abbr": "Luke",
+    "chapters": [
+      80, 52, 38, 44, 39, 49, 50, 56, 62, 42, 54, 59, 35, 35, 32, 31, 37, 43,
+      48, 47, 38, 71, 56, 53
+    ]
+  },
+  {
+    "name": "John",
+    "path": "/study/scriptures/nt/john",
+    "abbr": "John",
+    "chapters": [
+      51, 25, 36, 54, 47, 71, 53, 59, 41, 42, 57, 50, 38, 31, 27, 33, 26, 40,
+      42, 31, 25
+    ]
+  },
+  {
+    "name": "Acts",
+    "path": "/study/scriptures/nt/acts",
+    "abbr": "Acts",
+    "chapters": [
+      26, 47, 26, 37, 42, 15, 60, 40, 43, 48, 30, 25, 52, 28, 41, 40, 34, 28,
+      41, 38, 40, 30, 35, 27, 27, 32, 44, 31
+    ]
+  },
+  {
+    "name": "Romans",
+    "path": "/study/scriptures/nt/rom",
+    "abbr": "Rom.",
+    "chapters": [32, 29, 31, 25, 21, 23, 25, 39, 33, 21, 36, 21, 14, 23, 33, 27]
+  },
   {
     "name": "1 Corinthians",
     "path": "/study/scriptures/nt/1-cor",
-    "abbr": "1 Cor."
+    "abbr": "1 Cor.",
+    "chapters": [31, 16, 23, 21, 13, 20, 40, 13, 27, 33, 34, 31, 13, 40, 58, 24]
   },
   {
     "name": "2 Corinthians",
     "path": "/study/scriptures/nt/2-cor",
-    "abbr": "2 Cor."
+    "abbr": "2 Cor.",
+    "chapters": [24, 17, 18, 18, 21, 18, 16, 24, 15, 18, 33, 21, 14]
   },
-  { "name": "Galatians", "path": "/study/scriptures/nt/gal", "abbr": "Gal." },
-  { "name": "Ephesians", "path": "/study/scriptures/nt/eph", "abbr": "Eph." },
+  {
+    "name": "Galatians",
+    "path": "/study/scriptures/nt/gal",
+    "abbr": "Gal.",
+    "chapters": [24, 21, 29, 31, 26, 18]
+  },
+  {
+    "name": "Ephesians",
+    "path": "/study/scriptures/nt/eph",
+    "abbr": "Eph.",
+    "chapters": [23, 22, 21, 32, 33, 24]
+  },
   {
     "name": "Philippians",
     "path": "/study/scriptures/nt/philip",
-    "abbr": "Phil."
+    "abbr": "Phil.",
+    "chapters": [30, 30, 21, 23]
   },
-  { "name": "Colossians", "path": "/study/scriptures/nt/col", "abbr": "Col." },
+  {
+    "name": "Colossians",
+    "path": "/study/scriptures/nt/col",
+    "abbr": "Col.",
+    "chapters": [29, 23, 25, 18]
+  },
   {
     "name": "1 Thessalonians",
     "path": "/study/scriptures/nt/1-thes",
-    "abbr": "1 Thess."
+    "abbr": "1 Thess.",
+    "chapters": [10, 20, 13, 18, 28]
   },
   {
     "name": "2 Thessalonians",
     "path": "/study/scriptures/nt/2-thes",
-    "abbr": "2 Thess."
+    "abbr": "2 Thess.",
+    "chapters": [12, 17, 18]
   },
   {
     "name": "1 Timothy",
     "path": "/study/scriptures/nt/1-tim",
-    "abbr": "1 Tim."
+    "abbr": "1 Tim.",
+    "chapters": [20, 15, 16, 16, 25, 21]
   },
   {
     "name": "2 Timothy",
     "path": "/study/scriptures/nt/2-tim",
-    "abbr": "2 Tim."
+    "abbr": "2 Tim.",
+    "chapters": [18, 26, 17, 22]
   },
-  { "name": "Titus", "path": "/study/scriptures/nt/titus", "abbr": "Titus" },
+  {
+    "name": "Titus",
+    "path": "/study/scriptures/nt/titus",
+    "abbr": "Titus",
+    "chapters": [16, 15, 15]
+  },
   {
     "name": "Philemon",
     "path": "/study/scriptures/nt/philem",
-    "abbr": "Philem."
+    "abbr": "Philem.",
+    "chapters": [25]
   },
-  { "name": "Hebrews", "path": "/study/scriptures/nt/heb", "abbr": "Heb." },
-  { "name": "James", "path": "/study/scriptures/nt/james", "abbr": "James" },
-  { "name": "1 Peter", "path": "/study/scriptures/nt/1-pet", "abbr": "1 Pet." },
-  { "name": "2 Peter", "path": "/study/scriptures/nt/2-pet", "abbr": "2 Pet." },
-  { "name": "1 John", "path": "/study/scriptures/nt/1-jn", "abbr": "1 Jn." },
-  { "name": "2 John", "path": "/study/scriptures/nt/2-jn", "abbr": "2 Jn." },
-  { "name": "3 John", "path": "/study/scriptures/nt/3-jn", "abbr": "3 Jn." },
-  { "name": "Jude", "path": "/study/scriptures/nt/jude", "abbr": "Jude" },
-  { "name": "Revelation", "path": "/study/scriptures/nt/rev", "abbr": "Rev." },
+  {
+    "name": "Hebrews",
+    "path": "/study/scriptures/nt/heb",
+    "abbr": "Heb.",
+    "chapters": [14, 18, 19, 16, 14, 20, 28, 13, 28, 39, 40, 29, 25]
+  },
+  {
+    "name": "James",
+    "path": "/study/scriptures/nt/james",
+    "abbr": "James",
+    "chapters": [27, 26, 18, 17, 20]
+  },
+  {
+    "name": "1 Peter",
+    "path": "/study/scriptures/nt/1-pet",
+    "abbr": "1 Pet.",
+    "chapters": [25, 25, 22, 19, 14]
+  },
+  {
+    "name": "2 Peter",
+    "path": "/study/scriptures/nt/2-pet",
+    "abbr": "2 Pet.",
+    "chapters": [21, 22, 18]
+  },
+  {
+    "name": "1 John",
+    "path": "/study/scriptures/nt/1-jn",
+    "abbr": "1 Jn.",
+    "chapters": [10, 29, 24, 21, 21]
+  },
+  {
+    "name": "2 John",
+    "path": "/study/scriptures/nt/2-jn",
+    "abbr": "2 Jn.",
+    "chapters": [13]
+  },
+  {
+    "name": "3 John",
+    "path": "/study/scriptures/nt/3-jn",
+    "abbr": "3 Jn.",
+    "chapters": [14]
+  },
+  {
+    "name": "Jude",
+    "path": "/study/scriptures/nt/jude",
+    "abbr": "Jude",
+    "chapters": [25]
+  },
+  {
+    "name": "Revelation",
+    "path": "/study/scriptures/nt/rev",
+    "abbr": "Rev.",
+    "chapters": [
+      20, 29, 22, 11, 14, 17, 17, 13, 21, 11, 19, 18, 17, 20, 8, 21, 18, 24, 21,
+      15, 27, 21
+    ]
+  },
   {
     "name": "Book of Mormon Title Page",
     "path": "/study/scriptures/bofm/title-page",
@@ -179,50 +530,111 @@
     "path": "/study/scriptures/bofm/explanation",
     "abbr": "BoM Explanation"
   },
-  { "name": "1 Nephi", "path": "/study/scriptures/bofm/1-ne", "abbr": "1 Ne." },
-  { "name": "2 Nephi", "path": "/study/scriptures/bofm/2-ne", "abbr": "2 Ne." },
-  { "name": "Jacob", "path": "/study/scriptures/bofm/jacob", "abbr": "Jacob" },
+  {
+    "name": "1 Nephi",
+    "path": "/study/scriptures/bofm/1-ne",
+    "abbr": "1 Ne.",
+    "chapters": [
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ]
+  },
+  {
+    "name": "2 Nephi",
+    "path": "/study/scriptures/bofm/2-ne",
+    "abbr": "2 Ne.",
+    "chapters": [
+      32, 30, 25, 35, 34, 18, 11, 25, 54, 25, 8, 22, 26, 6, 30, 13, 25, 22, 21,
+      34, 16, 6, 22, 32, 30, 33, 35, 32, 14, 18, 21, 9, 15
+    ]
+  },
+  {
+    "name": "Jacob",
+    "path": "/study/scriptures/bofm/jacob",
+    "abbr": "Jacob",
+    "chapters": [1, 1, 1, 1, 1, 1, 1]
+  },
   {
     "name": "Enos",
     "path": "/study/scriptures/bofm/enos",
     "abbr": "Enos",
-    "chapters": 1
+    "chapters": [1]
   },
   {
     "name": "Jarom",
     "path": "/study/scriptures/bofm/jarom/1",
     "abbr": "Jarom",
-    "chapters": 1
+    "chapters": [1]
   },
   {
     "name": "Omni",
     "path": "/study/scriptures/bofm/omni",
     "abbr": "Omni",
-    "chapters": 1
+    "chapters": [1]
   },
   {
     "name": "Words of Mormon",
     "path": "/study/scriptures/bofm/w-of-m",
     "abbr": "WoM",
-    "chapters": 1
+    "chapters": [1]
   },
   {
     "name": "Mosiah",
     "path": "/study/scriptures/bofm/mosiah",
-    "abbr": "Mosiah"
+    "abbr": "Mosiah",
+    "chapters": [
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1
+    ]
   },
-  { "name": "Alma", "path": "/study/scriptures/bofm/alma", "abbr": "Alma" },
-  { "name": "Helaman", "path": "/study/scriptures/bofm/hel", "abbr": "Hel." },
-  { "name": "3 Nephi", "path": "/study/scriptures/bofm/3-ne", "abbr": "3 Ne." },
+  {
+    "name": "Alma",
+    "path": "/study/scriptures/bofm/alma",
+    "abbr": "Alma",
+    "chapters": [
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ]
+  },
+  {
+    "name": "Helaman",
+    "path": "/study/scriptures/bofm/hel",
+    "abbr": "Hel.",
+    "chapters": [34, 38, 30, 26, 34, 41, 21, 28, 41, 15, 36, 26, 26, 37, 30]
+  },
+  {
+    "name": "3 Nephi",
+    "path": "/study/scriptures/bofm/3-ne",
+    "abbr": "3 Ne.",
+    "chapters": [
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1
+    ]
+  },
   {
     "name": "4 Nephi",
     "path": "/study/scriptures/bofm/4-ne",
     "abbr": "4 Ne.",
-    "chapters": 1
+    "chapters": [49]
   },
-  { "name": "Mormon", "path": "/study/scriptures/bofm/morm", "abbr": "Morm." },
-  { "name": "Ether", "path": "/study/scriptures/bofm/ether", "abbr": "Ether" },
-  { "name": "Moroni", "path": "/study/scriptures/bofm/moro", "abbr": "Moro." },
+  {
+    "name": "Mormon",
+    "path": "/study/scriptures/bofm/morm",
+    "abbr": "Morm.",
+    "chapters": [19, 29, 22, 23, 24, 22, 10, 41, 37]
+  },
+  {
+    "name": "Ether",
+    "path": "/study/scriptures/bofm/ether",
+    "abbr": "Ether",
+    "chapters": [43, 25, 28, 19, 6, 30, 27, 26, 35, 34, 23, 41, 31, 31, 34]
+  },
+  {
+    "name": "Moroni",
+    "path": "/study/scriptures/bofm/moro",
+    "abbr": "Moro.",
+    "chapters": [4, 3, 4, 3, 2, 9, 48, 30, 26]
+  },
   {
     "name": "Book of Mormon Pronunciation Guide",
     "path": "/study/scriptures/bofm/pronunciation",
@@ -252,17 +664,29 @@
   {
     "name": "Doctrine and Covenants",
     "path": "/study/scriptures/dc-testament/dc",
-    "abbr": "D&C"
+    "abbr": "D&C",
+    "chapters": [
+      39, 3, 20, 7, 35, 37, 8, 12, 14, 70, 30, 9, 1, 11, 6, 6, 9, 47, 41, 84,
+      12, 4, 7, 19, 16, 2, 18, 16, 50, 11, 13, 5, 18, 12, 27, 8, 4, 42, 24, 3,
+      12, 93, 35, 6, 75, 33, 4, 6, 28, 46, 20, 42, 7, 10, 6, 20, 16, 65, 24, 17,
+      39, 9, 66, 43, 6, 13, 14, 35, 8, 14, 9, 26, 6, 7, 36, 119, 15, 22, 4, 5,
+      7, 24, 6, 120, 12, 11, 8, 48, 6, 7, 8, 141, 21, 37, 6, 2, 53, 17, 17, 8,
+      28, 48, 8, 17, 101, 34, 40, 86, 41, 8, 100, 8, 80, 16, 11, 34, 10, 2, 19,
+      1, 16, 6, 7, 1, 46, 9, 17, 145, 4, 3, 12, 25, 9, 23, 8, 66, 74, 12, 7, 42,
+      10, 60
+    ]
   },
   {
     "name": "Official Declaration 1",
-    "path": "/study/scriptures/dc-testament/od/1",
-    "abbr": "O.D. 1"
+    "path": "/study/scriptures/dc-testament/od",
+    "abbr": "O.D. 1",
+    "chapters": [4]
   },
   {
     "name": "Official Declaration 2",
-    "path": "/study/scriptures/dc-testament/od/2",
-    "abbr": "O.D. 2"
+    "path": "/study/scriptures/dc-testament/od",
+    "abbr": "O.D. 2",
+    "chapters": [3]
   },
 
   {
@@ -279,30 +703,30 @@
     "name": "Moses",
     "path": "/study/scriptures/pgp/moses",
     "abbr": "Moses",
-    "chapters": 8
+    "chapters": [42, 31, 25, 32, 59, 68, 69, 30]
   },
   {
     "name": "Abraham",
     "path": "/study/scriptures/pgp/abr",
     "abbr": "Abr.",
-    "chapters": 5
+    "chapters": [31, 25, 28, 31, 21]
   },
   {
     "name": "Joseph Smith—Matthew",
     "path": "/study/scriptures/pgp/js-m",
     "abbr": "JS-M",
-    "chapters": 1
+    "chapters": [55]
   },
   {
     "name": "Joseph Smith—History",
     "path": "/study/scriptures/pgp/js-h",
     "abbr": "JS-H",
-    "chapters": 1
+    "chapters": [82]
   },
   {
     "name": "Articles of Faith",
     "path": "/study/scriptures/pgp/a-of-f",
     "abbr": "A of F",
-    "chapters": 1
+    "chapters": [13]
   }
 ]

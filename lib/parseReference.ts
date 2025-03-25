@@ -56,30 +56,93 @@ export function parseReference(
 
   const bookEndIdx = digits.length ? digits[1]?.index : undefined;
 
-  const bookText = input.slice(0, bookEndIdx);
+  const bookText = input.slice(0, bookEndIdx).toLocaleLowerCase();
 
   const sorted = (paths as Book[]).toSorted((a, b) => {
+    let scoreA = 0;
+    let scoreB = 0;
+
+    const abbrA = a.abbr.toLocaleLowerCase();
+    const nameA = a.name.toLocaleLowerCase();
+
     const minA = Math.min(
-      distance(a.abbr, bookText),
-      distance(a.name, bookText),
-    );
-    const minB = Math.min(
-      distance(b.abbr, bookText),
-      distance(b.name, bookText),
+      distance(abbrA, bookText),
+      distance(nameA, bookText),
     );
 
-    if (minA > minB) {
+    const abbrB = b.abbr.toLocaleLowerCase();
+    const nameB = b.name.toLocaleLowerCase();
+
+    const minB = Math.min(
+      distance(abbrB, bookText),
+      distance(nameB, bookText),
+    );
+
+    if (minA < minB) {
+      scoreA += 50;
+    }
+
+    if (minB < minA) {
+      scoreB += 50;
+    }
+
+    if (nameA[0] === bookText[0]) {
+      scoreA += 10;
+      if (nameA[1] === bookText[1]) {
+        scoreA += 20;
+        if (nameA[2] === bookText[2]) {
+          scoreA += 50;
+        }
+      }
+    }
+
+    if (nameB[0] === bookText[0]) {
+      scoreB += 15;
+      if (nameB[1] === bookText[1]) {
+        scoreB += 20;
+        if (nameB[2] === bookText[2]) {
+          scoreB += 50;
+        }
+      }
+    }
+
+    const dA = Math.min(
+      Math.abs(abbrA.length - bookText.length),
+      Math.abs(nameA.length - bookText.length),
+    );
+
+    const dB = Math.min(
+      Math.abs(abbrB.length - bookText.length),
+      Math.abs(nameB.length - bookText.length),
+    );
+
+    if (dA < dB) {
+      scoreA += 5;
+    }
+
+    if (dB < dA) {
+      scoreB += 5;
+    }
+
+    if (scoreA < scoreB) {
       return 1;
     }
-    if (minA < minB) {
+
+    if (scoreB < scoreA) {
       return -1;
     }
+
     return 0;
   });
 
   const book = sorted[0];
 
-  if (book.chapters === 1) {
+  if (chapter && book?.chapters?.length && book.chapters.length < chapter) {
+    chapter = undefined;
+    ranges.length = 0;
+  }
+
+  if (!chapter && book?.chapters?.length && book.chapters.length === 1) {
     chapter = 1;
   }
 

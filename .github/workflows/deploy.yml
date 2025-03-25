@@ -32,5 +32,3 @@ jobs:
           project: "gl-link"
           entrypoint: "main.ts"
           root: "."
-          
-          
