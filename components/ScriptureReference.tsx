@@ -47,7 +47,7 @@ export default function ScriptureReference(props: Props) {
 
   const long = `${book.name} ${numbers}`.trim();
 
-  let abbrElem = <></>;
+  let abbrElem;
 
   if (book.name !== book.abbr) {
     const abbr = `${book.abbr} ${numbers}`.trim();

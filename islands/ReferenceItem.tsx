@@ -18,7 +18,7 @@ export default function (props: Props) {
 
     if (shouldDelete) {
       await deleteById(id);
-      deleteCallback()
+      deleteCallback();
     }
   }
 
@@ -31,6 +31,7 @@ export default function (props: Props) {
     >
       <ScriptureReference {...props} />
       <button
+        type="button"
         aria-label="delete"
         class="text-red-500 hover:text-red-700 focus:text-red-700 dark:text-red-400 dark:hover:text-red-200 dark:focus:text-red-200"
         onClick={deleteItem}

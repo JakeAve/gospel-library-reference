@@ -1,5 +1,3 @@
-import { IS_BROWSER } from "$fresh/runtime.ts";
-
 interface Props {
   link: string;
   text?: string;
@@ -7,10 +5,6 @@ interface Props {
 
 export function CopyBtn(props: Props) {
   const { link, text } = props;
-
-  if (!IS_BROWSER) {
-    return <></>;
-  }
 
   function copy() {
     const items: Record<string, Blob> = {

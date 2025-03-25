@@ -1,9 +1,15 @@
+import { IS_BROWSER } from "$fresh/runtime.ts";
+
 const DB_NAME = "saved_references";
 const DB_VERSION = 1;
 
 const STORE_NAME = "reference";
 
-function init(): Promise<{ request: IDBOpenDBRequest; db: IDBDatabase }> {
+function init(): Promise<
+  { request: IDBOpenDBRequest; db: IDBDatabase } | null
+> {
+  if (!IS_BROWSER) return Promise.resolve(null);
+
   return new Promise((resolve) => {
     const request = globalThis.indexedDB.open(DB_NAME, DB_VERSION);
 
@@ -37,7 +43,13 @@ function init(): Promise<{ request: IDBOpenDBRequest; db: IDBDatabase }> {
 }
 
 export async function add(reference: Reference): Promise<void> {
-  const { db } = await init();
+  const result = await init();
+
+  if (!result) {
+    return;
+  }
+
+  const { db } = result;
 
   const data = {
     ...reference,
@@ -60,7 +72,13 @@ export interface RefWithId extends Reference {
 }
 
 export async function getAll(): Promise<RefWithId[]> {
-  const { db } = await init();
+  const result = await init();
+
+  if (!result) {
+    return [];
+  }
+
+  const { db } = result;
 
   const objectStore = db.transaction([STORE_NAME], "readonly").objectStore(
     STORE_NAME,
@@ -86,7 +104,13 @@ export async function getAll(): Promise<RefWithId[]> {
 }
 
 export async function deleteById(id: number): Promise<void> {
-  const { db } = await init();
+  const result = await init();
+
+  if (!result) {
+    return;
+  }
+
+  const { db } = result;
 
   const deleteRequest = db.transaction([STORE_NAME], "readwrite").objectStore(
     STORE_NAME,

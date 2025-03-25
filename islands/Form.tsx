@@ -1,7 +1,6 @@
 import { computed, signal } from "@preact/signals";
 import { parseReference } from "../lib/parseReference.ts";
 import ScriptureReference from "../components/ScriptureReference.tsx";
-import { IS_BROWSER } from "$fresh/runtime.ts";
 import { add, getAll, RefWithId } from "../lib/indexedDb.ts";
 import ReferenceItem from "./ReferenceItem.tsx";
 
@@ -10,10 +9,6 @@ const input = signal("");
 const dbList = signal<RefWithId[]>([]);
 
 export default function Form() {
-  if (!IS_BROWSER) {
-    return <></>;
-  }
-
   if (!dbList.peek().length) {
     getAll().then((rs) => {
       dbList.value = rs;
@@ -34,7 +29,7 @@ export default function Form() {
 
   const linkElement = computed(() => {
     const ref = reference.value;
-    if (!ref) return <></>;
+    if (!ref) return;
     return (
       <div class="text-lg">
         <ScriptureReference {...ref} />
