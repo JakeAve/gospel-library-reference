@@ -55,7 +55,11 @@ export async function add(reference: Reference): Promise<void> {
   };
 }
 
-export async function getAll(): Promise<Reference[]> {
+export interface RefWithId extends Reference {
+  id: number;
+}
+
+export async function getAll(): Promise<RefWithId[]> {
   const { db } = await init();
 
   const objectStore = db.transaction([STORE_NAME], "readonly").objectStore(
@@ -64,7 +68,7 @@ export async function getAll(): Promise<Reference[]> {
   const request = objectStore.openCursor(null, "prev");
 
   return new Promise((resolve) => {
-    const result: Reference[] = [];
+    const result: RefWithId[] = [];
     request.onsuccess = (event: Event) => {
       const cursor = (event.target as IDBRequest).result;
       if (cursor) {
@@ -77,6 +81,23 @@ export async function getAll(): Promise<Reference[]> {
     request.onerror = (error) => {
       console.error(error);
       resolve([]);
+    };
+  });
+}
+
+export async function deleteById(id: number): Promise<void> {
+  const { db } = await init();
+
+  const deleteRequest = db.transaction([STORE_NAME], "readwrite").objectStore(
+    STORE_NAME,
+  ).delete(id);
+
+  return new Promise((resolve) => {
+    deleteRequest.onsuccess = (_event: Event) => {
+      resolve();
+    };
+    deleteRequest.onerror = (_event: Event) => {
+      resolve();
     };
   });
 }
