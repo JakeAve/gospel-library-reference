@@ -1,7 +1,7 @@
 import { computed, signal } from "@preact/signals";
 import { parseReference } from "../lib/parseReference.ts";
 import ScriptureReference from "../components/ScriptureReference.tsx";
-import { add, getAll, RefWithId } from "../lib/indexedDb.ts";
+import { add, getAll, RefWithId } from "../lib/indexedDB.ts";
 import ReferenceItem from "./ReferenceItem.tsx";
 
 const input = signal("");
