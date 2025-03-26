@@ -20,7 +20,6 @@ export default function AddForm(props: Props) {
     inputSignal.value = "";
   }
 
-
   const linkElement = computed(() => {
     const ref = referenceSignal.value;
     if (!ref) return;

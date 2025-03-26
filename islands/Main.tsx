@@ -10,7 +10,7 @@ const input = signal("");
 const dbList = signal<RefWithId[]>([]);
 
 export default function Form() {
-  const toastRef = useRef<HTMLDialogElement>();
+  const toastRef = useRef<HTMLDialogElement>(null);
 
   function showSuccess(message: string, timeout = 3000) {
     const toast = toastRef.current as HTMLDialogElement;
@@ -73,7 +73,6 @@ export default function Form() {
         class="fixed top-6 px-6 py-1 animate-bounce border border-neutral-500 rounded-md shadow-md shadow-neutral-500/50 outline-blue-500"
         ref={toastRef}
       >
-        Toast
       </dialog>
     </div>
   );
