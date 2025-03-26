@@ -5,8 +5,9 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $AddForm from "./islands/AddForm.tsx";
 import * as $CopyBtn from "./islands/CopyBtn.tsx";
-import * as $Form from "./islands/Form.tsx";
+import * as $Main from "./islands/Main.tsx";
 import * as $ReferenceItem from "./islands/ReferenceItem.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -17,8 +18,9 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
+    "./islands/AddForm.tsx": $AddForm,
     "./islands/CopyBtn.tsx": $CopyBtn,
-    "./islands/Form.tsx": $Form,
+    "./islands/Main.tsx": $Main,
     "./islands/ReferenceItem.tsx": $ReferenceItem,
   },
   baseUrl: import.meta.url,

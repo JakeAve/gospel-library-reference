@@ -27,7 +27,7 @@ export default function (props: Props) {
   return (
     <div
       ref={containerRef}
-      class="hidden-scroll-bar odd:bg-neutral-200 odd:dark:bg-neutral-700 px-2 py-3 flex gap-2 justify-between items-center"
+      class="bounce-in odd:bg-neutral-200 odd:dark:bg-neutral-700 px-2 py-3 flex gap-2 justify-between items-center"
     >
       <ScriptureReference {...props} />
       <button
