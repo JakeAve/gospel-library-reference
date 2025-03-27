@@ -6,6 +6,7 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $AddForm from "./islands/AddForm.tsx";
+import * as $Contexts_Toast from "./islands/Contexts/Toast.tsx";
 import * as $CopyBtn from "./islands/CopyBtn.tsx";
 import * as $Main from "./islands/Main.tsx";
 import * as $ReferenceItem from "./islands/ReferenceItem.tsx";
@@ -19,6 +20,7 @@ const manifest = {
   },
   islands: {
     "./islands/AddForm.tsx": $AddForm,
+    "./islands/Contexts/Toast.tsx": $Contexts_Toast,
     "./islands/CopyBtn.tsx": $CopyBtn,
     "./islands/Main.tsx": $Main,
     "./islands/ReferenceItem.tsx": $ReferenceItem,

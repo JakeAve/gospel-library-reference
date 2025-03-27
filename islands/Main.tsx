@@ -1,27 +1,16 @@
 import { computed, signal } from "@preact/signals";
-import { useRef } from "preact/hooks";
 import { parseReference } from "../lib/parseReference.ts";
 import { add, getAll, RefWithId } from "../lib/indexedDB.ts";
 import ReferenceItem from "./ReferenceItem.tsx";
 import AddForm from "./AddForm.tsx";
+import { useToastContext } from "./Contexts/Toast.tsx";
 
 const input = signal("");
 
 const dbList = signal<RefWithId[]>([]);
 
 export default function Form() {
-  const toastRef = useRef<HTMLDialogElement>(null);
-
-  function showSuccess(message: string, timeout = 3000) {
-    const toast = toastRef.current as HTMLDialogElement;
-    toast.innerText = message;
-
-    toast.show();
-
-    setTimeout(() => {
-      toast.close();
-    }, timeout);
-  }
+  const { showMessage } = useToastContext();
 
   if (!dbList.peek().length) {
     getAll().then((rs) => {
@@ -46,7 +35,7 @@ export default function Form() {
     const ref = reference.value;
     if (ref) {
       await add(ref);
-      showSuccess(`☑️ Added ${ref.book.name} ${ref.chapter || ""}`.trim());
+      showMessage(`☑️ Added ${ref.book.name} ${ref.chapter || ""}`.trim());
     }
 
     dbList.value = await getAll();
@@ -69,11 +58,6 @@ export default function Form() {
         <h2 class="tracking-widest px-2">History</h2>
         {storedRefs}
       </div>
-      <dialog
-        class="fixed top-6 px-6 py-1 animate-bounce border border-neutral-500 rounded-md shadow-md shadow-neutral-500/50 outline-blue-500"
-        ref={toastRef}
-      >
-      </dialog>
     </div>
   );
 }

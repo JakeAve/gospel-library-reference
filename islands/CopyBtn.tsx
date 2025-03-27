@@ -1,3 +1,5 @@
+import { useToastContext } from "./Contexts/Toast.tsx";
+
 interface Props {
   link: string;
   text?: string;
@@ -5,6 +7,8 @@ interface Props {
 
 export function CopyBtn(props: Props) {
   const { link, text } = props;
+
+  const { showMessage } = useToastContext();
 
   function copy() {
     const items: Record<string, Blob> = {
@@ -24,7 +28,9 @@ export function CopyBtn(props: Props) {
     const clipboardItem = new ClipboardItem(items);
 
     navigator.clipboard.write([clipboardItem])
-      .catch(() => alert("Error copying"));
+      .catch(() => alert("Error copying")).finally(() => {
+        showMessage("Link copied", 1500);
+      });
   }
 
   return (
