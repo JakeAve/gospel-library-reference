@@ -5,4 +5,6 @@ import config from "./fresh.config.ts";
 
 import "$std/dotenv/load.ts";
 
+Deno.env.set("DENO_ENV", "development");
+
 await dev(import.meta.url, "./main.ts", config);
