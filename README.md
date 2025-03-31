@@ -2,7 +2,11 @@
 
 Webapp to create Gospel Library compatible links
 
-### Usage
+## Setup
+
+```
+git config core.hooksPath hooks/
+```
 
 Make sure to install Deno: https://deno.land/manual/getting_started/installation
 

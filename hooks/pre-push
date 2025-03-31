@@ -1,0 +1,36 @@
+#!/bin/bash
+
+deno lint
+
+if [ $? -ne 0 ]; then
+    echo "Linting failed. Please fix the issues and try again."
+    exit 1
+fi
+
+deno test --no-check
+
+if [ $? -ne 0 ]; then
+    echo "Tests failed. Please fix the issues and try again."
+    exit 1
+fi
+
+newVersion=$(deno task version)
+if [ $? -ne 0 ]; then
+    echo "Version update failed. Please check the issue and try again."
+    exit 1
+fi
+
+git add ./deno.json ./routes/index.tsx
+if [ $? -ne 0 ]; then
+    echo "Failed to stage updated files. Please check the issue and try again."
+    exit 1
+fi
+
+git commit -m "Update version to ${newVersion}"
+if [ $? -ne 0 ]; then
+    echo "Failed to create a commit. Please check the issue and try again."
+    exit 1
+fi
+
+echo "Version updated and committed successfully: ${newVersion}"
+exit 0
