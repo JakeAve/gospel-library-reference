@@ -27,12 +27,18 @@ export function parseReference(
     for (const v of verses) {
       if (v.match(/-|–/)) {
         const vNums = v.match(/\d+/g);
-        if (vNums) {
+        if (vNums?.length && vNums.length === 2) {
           const range: number[] = [];
           for (const vn of vNums) {
             range.push(Number(vn));
           }
           ranges.push(range.toSorted((a, b) => a - b) as [number, number]);
+        } else if (vNums?.length && vNums.length === 1) {
+          ranges.push(Number(vNums[0]));
+        } else if (vNums?.length && vNums.length > 2) {
+          for (const n of vNums) {
+            ranges.push(Number(n));
+          }
         }
       } else if (v) {
         const vNum = v.match(/\d+/);

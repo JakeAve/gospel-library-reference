@@ -428,3 +428,33 @@ Deno.test("Can pick up other symbols", () => {
     ranges: [[12, 27]],
   });
 });
+
+Deno.test("Will show a single verse for an incomplete range", () => {
+  const ref = parseReference("1 John 1:7-");
+
+  assertEquals(ref, {
+    book: {
+      "name": "1 John",
+      "path": "/study/scriptures/nt/1-jn",
+      "abbr": "1 Jn.",
+      "chapters": [10, 29, 24, 21, 21],
+    },
+    chapter: 1,
+    ranges: [7],
+  });
+});
+
+Deno.test("Will coerce a weird range", () => {
+  const ref = parseReference("1 John 1:7-8-9");
+
+  assertEquals(ref, {
+    book: {
+      "name": "1 John",
+      "path": "/study/scriptures/nt/1-jn",
+      "abbr": "1 Jn.",
+      "chapters": [10, 29, 24, 21, 21],
+    },
+    chapter: 1,
+    ranges: [7, 8, 9],
+  });
+});
