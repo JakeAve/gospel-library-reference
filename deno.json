@@ -17,6 +17,9 @@
       "tags": ["fresh", "recommended"]
     }
   },
+  "fmt": {
+    "exclude": ["static/"]
+  },
   "exclude": ["**/_fresh/*"],
   "imports": {
     "$fresh/": "https://deno.land/x/fresh@1.7.3/",
