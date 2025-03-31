@@ -22,7 +22,7 @@ const PRE_CACHE_URLS = [
   "/_frsh/js/fb3624e2da6665f55b2abf4860a5fc5ada35cd13/island-main.js",
   "/_frsh/js/fb3624e2da6665f55b2abf4860a5fc5ada35cd13/chunk-2IVDUWKS.js",
   "/_frsh/js/fb3624e2da6665f55b2abf4860a5fc5ada35cd13/island-referenceitem.js",
-  "/_frsh/js/fb3624e2da6665f55b2abf4860a5fc5ada35cd13/metafile.json"
+  "/_frsh/js/fb3624e2da6665f55b2abf4860a5fc5ada35cd13/metafile.json",
 ];
 
 self.addEventListener("install", (event) => {
