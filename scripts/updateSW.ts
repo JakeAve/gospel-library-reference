@@ -11,7 +11,6 @@ import _snapshot from "../_fresh/snapshot.json" with { type: "json" };
 const snapshot = _snapshot as Snapshot;
 
 const SW_PATH = "./static/sw.js";
-// const ROUTES_PATH = "./routes";
 
 async function updateSW() {
   const swContents = await Deno.readTextFile(SW_PATH);

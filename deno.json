@@ -1,13 +1,16 @@
 {
   "lock": false,
+  "version": "0.0.0",
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
     "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
     "manifest": "deno task cli manifest $(pwd)",
     "start": "deno run -A --watch=static/,routes/ dev.ts",
-    "build": "deno run -A dev.ts build && deno run --allow-read=./static/sw.js,./routes --allow-write=./static/sw.js ./scripts/updateSW.ts",
+    "build": "deno run -A dev.ts build && deno task sw",
     "preview": "deno run -A main.ts",
-    "update": "deno run -A -r https://fresh.deno.dev/update ."
+    "sw": "deno run --allow-read=./static/sw.js,./routes --allow-write=./static/sw.js ./scripts/updateSW.ts",
+    "update": "deno run -A -r https://fresh.deno.dev/update .",
+    "version": "deno run --allow-read=./routes/index.tsx,./deno.json --allow-write=./routes/index.tsx,./deno.json ./scripts/updateVersion.ts"
   },
   "lint": {
     "rules": {
