@@ -29,7 +29,7 @@ export function CopyBtn(props: Props) {
 
     navigator.clipboard.write([clipboardItem])
       .then(() => {
-        showMessage("Copied link", 1500);
+        showMessage("Copied link (Double click for text only)", 1500);
       }).catch(() => showMessage("Error copying 😔", 1500));
   }
 
