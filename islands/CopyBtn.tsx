@@ -28,9 +28,29 @@ export function CopyBtn(props: Props) {
     const clipboardItem = new ClipboardItem(items);
 
     navigator.clipboard.write([clipboardItem])
-      .catch(() => alert("Error copying")).finally(() => {
-        showMessage("Link copied", 1500);
+      .then(() => {
+        showMessage("Copied link", 1500);
+      }).catch(() => showMessage("Error copying 😔", 1500));
+  }
+
+  function copyText() {
+    if (text) {
+      const clipboardItem = new ClipboardItem({
+        "text/plain": new Blob([text], { type: "text/plain" }),
       });
+      navigator.clipboard.write([clipboardItem]).then(() => {
+        showMessage("Copied text", 1500);
+      }).catch(() => showMessage("Error copying 😔"));
+    } else {
+      const clipboardItem = new ClipboardItem({
+        "text/plain": new Blob([link], { type: "text/plain" }),
+      });
+      navigator.clipboard.write([clipboardItem]).then(() => {
+        showMessage("Copied link", 1500);
+      }).catch(() => {
+        showMessage("Error copying 😔", 1500);
+      });
+    }
   }
 
   return (
@@ -38,8 +58,13 @@ export function CopyBtn(props: Props) {
       class="text-blue-500 hover:text-blue-700 focus:text-blue-700 dark:text-blue-400 dark:hover:text-blue-200 dark:focus:text-blue-200"
       type="button"
       onClick={copy}
-      title="Copy"
-      aria-label="Copy"
+      onDblClick={copyText}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        copyText();
+      }}
+      title="Copy (right/dbl click text only)"
+      aria-label="Copy (right/dbl click text only)"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
