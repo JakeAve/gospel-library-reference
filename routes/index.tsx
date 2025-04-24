@@ -26,7 +26,7 @@ export default function Home() {
                 {" "}
               </svg>
             </a>
-            <span id="version">v0.0.5</span>
+            <span id="version">v0.0.6</span>
             <a href="/" aria-label="Update" title="Update">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
