@@ -499,7 +499,7 @@
     "name": "Ezra",
     "path": "/study/scriptures/ot/ezra",
     "abbr": "Ezra",
-    "chapters": [[11, 70, 13, 24, 17, 22, 28, 36, 15, 44]]
+    "chapters": [11, 70, 13, 24, 17, 22, 28, 36, 15, 44]
   },
   {
     "name": "Nehemiah",
@@ -1307,14 +1307,14 @@
     ]
   },
   {
-    "name": "Book of Mormon Title Page",
+    "name": "Title Page of the Book of Mormon",
     "path": "/study/scriptures/bofm/title-page",
-    "abbr": "BoM Title Page"
+    "abbr": "Title Page BoM"
   },
   {
-    "name": "Title Page of the Book of Mormon",
+    "name": "Book of Mormon Title Page",
     "path": "/study/scriptures/bofm/bofm-title",
-    "abbr": "Title Page BoM"
+    "abbr": "BoM Title Page"
   },
   {
     "name": "Book of Mormon Introduction",
