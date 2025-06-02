@@ -1,9 +1,9 @@
 import { computed, signal } from "@preact/signals";
-import { parseReference } from "../lib/parseReference.ts";
 import { add, getAll, RefWithId } from "../lib/indexedDB.ts";
 import ReferenceItem from "./ReferenceItem.tsx";
 import AddForm from "./AddForm.tsx";
 import { useToastContext } from "./Contexts/Toast.tsx";
+import { parseRef } from "@jakeave/scripture-ref/client";
 
 const input = signal("");
 
@@ -21,7 +21,7 @@ export default function Form() {
   const reference = computed(() => {
     const val = input.value;
     if (val.trim() === "") return "";
-    return parseReference(val);
+    return parseRef(val);
   });
 
   const storedRefs = computed(() => {

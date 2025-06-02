@@ -6,9 +6,3 @@ interface Book {
 }
 
 type VerseRange = (number | [number, number])[];
-
-interface Reference {
-  book: Book;
-  chapter?: number;
-  ranges: VerseRange;
-}
