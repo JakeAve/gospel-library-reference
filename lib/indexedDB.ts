@@ -83,7 +83,6 @@ function init(): Promise<
     };
 
     request.onsuccess = (_event: Event) => {
-      console.log(request.result);
       resolve({ request, db: request.result });
     };
   });
@@ -144,7 +143,6 @@ export async function getAll(): Promise<RefWithId[]> {
         result.push(cursor.value);
         cursor.continue();
       } else {
-        console.log(result);
         resolve(result);
       }
     };
@@ -175,5 +173,40 @@ export async function deleteById(id: number): Promise<void> {
     deleteRequest.onerror = (_event: Event) => {
       resolve();
     };
+  });
+}
+
+export async function addContent(id: number, content: string): Promise<void> {
+  const result = await init();
+
+  if (!result) {
+    return;
+  }
+
+  const { db } = result;
+  const transaction = db.transaction([STORE_NAME], "readwrite");
+  const store = transaction.objectStore(STORE_NAME);
+
+  const getRequest = store.get(id);
+
+  return new Promise((resolve, reject) => {
+    getRequest.onsuccess = (_event: Event) => {
+      const existing = getRequest.result;
+      if (!existing) {
+        reject(`No object found with id ${id}`);
+        return;
+      }
+
+      const updatedObj = { ...existing, content };
+
+      const putRequest = store.put(updatedObj);
+
+      putRequest.onsuccess = () => resolve();
+      putRequest.onerror = () =>
+        reject(`Failed to update object with id ${id}`);
+    };
+
+    getRequest.onerror = () =>
+      reject(`Failed to retrieve object with id ${id}`);
   });
 }

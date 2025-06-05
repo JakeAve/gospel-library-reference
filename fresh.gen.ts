@@ -9,6 +9,7 @@ import * as $AddForm from "./islands/AddForm.tsx";
 import * as $Contexts_Toast from "./islands/Contexts/Toast.tsx";
 import * as $CopyBtn from "./islands/CopyBtn.tsx";
 import * as $Main from "./islands/Main.tsx";
+import * as $ReferenceContent from "./islands/ReferenceContent.tsx";
 import * as $ReferenceItem from "./islands/ReferenceItem.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -23,6 +24,7 @@ const manifest = {
     "./islands/Contexts/Toast.tsx": $Contexts_Toast,
     "./islands/CopyBtn.tsx": $CopyBtn,
     "./islands/Main.tsx": $Main,
+    "./islands/ReferenceContent.tsx": $ReferenceContent,
     "./islands/ReferenceItem.tsx": $ReferenceItem,
   },
   baseUrl: import.meta.url,

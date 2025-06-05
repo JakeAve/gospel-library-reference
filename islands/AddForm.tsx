@@ -1,5 +1,6 @@
 import { computed, Signal } from "@preact/signals";
 import ScriptureReference from "../components/ScriptureReference.tsx";
+import type { Reference } from "@jakeave/scripture-ref/types";
 
 interface Props {
   onSubmit: (e: SubmitEvent) => void;
@@ -52,7 +53,7 @@ export default function AddForm(props: Props) {
   });
 
   return (
-    <div class="mx-auto max-w-lg flex flex-col gap-8 px-8 py-8">
+    <div class="flex flex-col max-w-lg px-8 py-8 mx-auto gap-8">
       <form
         class="grid gap-2"
         autoComplete="off"
@@ -62,9 +63,9 @@ export default function AddForm(props: Props) {
         <label class="text-xl font-light" for="reference">
           Type scripture reference
         </label>
-        <div class="flex gap-2 relative">
+        <div class="relative flex gap-2">
           <input
-            class="text-xl rounded-none flex-auto font-light border-b-2 ps-6 pe-1 py-1 bg-transparent border-neutral-400 dark:focus:border-neutral-200 focus:border-black outline-none"
+            class="flex-auto py-1 text-xl font-light bg-transparent border-b-2 rounded-none outline-none ps-6 pe-1 border-neutral-400 dark:focus:border-neutral-200 focus:border-black"
             name="reference"
             id="reference"
             autoFocus
@@ -72,9 +73,9 @@ export default function AddForm(props: Props) {
           />
           {cancelButton}
           <button
-            class="font-bold ease-out duration-300 text-blue-500 hover:text-blue-700 focus:text-blue-700 dark:text-blue-400 dark:hover:text-blue-200 dark:focus:text-blue-200 p-2 border-2 border-blue-500 hover:border-blue-700 focus:border-blue-700 dark:border-blue-400 dark:hover:border-blue-200 dark:focus:border-blue-200 rounded-md h-9 w-9 flex justify-center items-center active:scale-90"
-            aria-label="Add reference"
-            title="Add reference"
+            class="flex items-center justify-center p-2 font-bold text-blue-500 border-2 border-blue-500 ease-out duration-300 hover:text-blue-700 focus:text-blue-700 dark:text-blue-400 dark:hover:text-blue-200 dark:focus:text-blue-200 hover:border-blue-700 focus:border-blue-700 dark:border-blue-400 dark:hover:border-blue-200 dark:focus:border-blue-200 rounded-md h-9 w-9 active:scale-90"
+            aria-label="Save reference"
+            title="Save reference"
             type="submit"
           >
             +

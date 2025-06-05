@@ -47,15 +47,15 @@ export default function Form() {
 
   return (
     <div class="relative">
-      <div class="sticky top-0 bg-neutral-500/10 backdrop-blur-3xl">
+      <div class="sticky z-10 top-0 bg-neutral-50 dark:bg-neutral-800 shadow-[0px_40px_80px_rgba(0,0,0,0.1)]">
         <AddForm
           onSubmit={addReference}
           referenceSignal={reference}
           inputSignal={input}
         />
       </div>
-      <div class="mx-auto max-w-lg flex flex-col gap-2 text-sm mt-4 px-4">
-        <h2 class="tracking-widest px-2">History</h2>
+      <div class="flex flex-col max-w-lg px-4 pb-8 mx-auto mt-4 text-sm gap-2">
+        <h2 class="px-2 tracking-widest">Saved</h2>
         {storedRefs}
       </div>
     </div>

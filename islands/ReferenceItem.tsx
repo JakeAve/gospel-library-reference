@@ -2,11 +2,11 @@ import { useRef } from "preact/hooks";
 import ScriptureReference from "../components/ScriptureReference.tsx";
 import { deleteById, RefWithId } from "../lib/indexedDB.ts";
 
-interface Props extends RefWithId {
+export interface RefItemProps extends RefWithId {
   deleteCallback: () => void;
 }
 
-export default function (props: Props) {
+export default function (props: RefItemProps) {
   const { id, deleteCallback } = props;
 
   async function deleteItem() {
@@ -27,7 +27,7 @@ export default function (props: Props) {
   return (
     <div
       ref={containerRef}
-      class="bounce-in odd:bg-neutral-200 odd:dark:bg-neutral-700 px-2 py-3 flex gap-2 justify-between items-center"
+      class="flex items-center justify-between px-2 py-3 bounce-in odd:bg-neutral-200 odd:dark:bg-neutral-700 gap-2"
     >
       <ScriptureReference {...props} />
       <button

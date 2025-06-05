@@ -22,3 +22,13 @@
   animation-iteration-count: 1;
   animation-duration: 1s;
 }
+
+details summary::marker {
+  font-size: 1.2rem;
+  content: "➤ ";
+}
+
+details[open] summary::marker {
+  content: "▼ ";
+  font-size: 1.2rem;
+}
