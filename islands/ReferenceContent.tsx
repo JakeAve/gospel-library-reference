@@ -1,7 +1,7 @@
 import { computed, signal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { JSX } from "preact/jsx-runtime/src/index.d.ts";
-import { addContent } from "../lib/indexedDb.ts";
+import { addContent } from "../lib/indexedDB.ts";
 import { fetchContent } from "../lib/fetchContent.ts";
 
 interface Props {
