@@ -8,9 +8,11 @@ import * as $index from "./routes/index.tsx";
 import * as $AddForm from "./islands/AddForm.tsx";
 import * as $Contexts_Toast from "./islands/Contexts/Toast.tsx";
 import * as $CopyBtn from "./islands/CopyBtn.tsx";
+import * as $FoundReference from "./islands/FoundReference.tsx";
 import * as $Main from "./islands/Main.tsx";
 import * as $ReferenceContent from "./islands/ReferenceContent.tsx";
-import * as $ReferenceItem from "./islands/ReferenceItem.tsx";
+import * as $SavedReference from "./islands/SavedReference.tsx";
+import * as $ToggleHeight from "./islands/ToggleHeight.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -23,9 +25,11 @@ const manifest = {
     "./islands/AddForm.tsx": $AddForm,
     "./islands/Contexts/Toast.tsx": $Contexts_Toast,
     "./islands/CopyBtn.tsx": $CopyBtn,
+    "./islands/FoundReference.tsx": $FoundReference,
     "./islands/Main.tsx": $Main,
     "./islands/ReferenceContent.tsx": $ReferenceContent,
-    "./islands/ReferenceItem.tsx": $ReferenceItem,
+    "./islands/SavedReference.tsx": $SavedReference,
+    "./islands/ToggleHeight.tsx": $ToggleHeight,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

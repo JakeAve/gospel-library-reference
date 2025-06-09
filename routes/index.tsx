@@ -39,7 +39,7 @@ export default function Home() {
               </svg>
             </a>
           </div>
-          <h1 class="text-xl tracking-widest text-center">
+          <h1 class="text-lg tracking-widest text-center">
             GospelLibrary.Link
           </h1>
         </div>

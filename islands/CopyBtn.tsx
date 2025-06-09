@@ -1,24 +1,24 @@
 import { useToastContext } from "./Contexts/Toast.tsx";
 
 interface Props {
-  link: string;
-  text?: string;
+  content: string;
+  label?: string;
 }
 
 export function CopyBtn(props: Props) {
-  const { link, text } = props;
+  const { content, label } = props;
 
   const { showMessage } = useToastContext();
 
   function copy() {
     const items: Record<string, Blob> = {
-      "text/plain": new Blob([link], { type: "text/plain" }),
+      "text/plain": new Blob([content], { type: "text/plain" }),
     };
 
-    if (text) {
+    if (label) {
       const aTag = document.createElement("a");
-      aTag.innerText = text;
-      aTag.href = link;
+      aTag.innerText = label;
+      aTag.href = content;
 
       items["text/html"] = new Blob([aTag.outerHTML], {
         type: "text/html",
@@ -29,24 +29,31 @@ export function CopyBtn(props: Props) {
 
     navigator.clipboard.write([clipboardItem])
       .then(() => {
-        showMessage("Copied link (Double click for text only)", 1500);
+        if (label) {
+          showMessage(
+            "Copied link (Double click or right click for text only)",
+            1500,
+          );
+        } else {
+          showMessage("Copied", 1500);
+        }
       }).catch(() => showMessage("Error copying 😔", 1500));
   }
 
   function copyText() {
-    if (text) {
+    if (label) {
       const clipboardItem = new ClipboardItem({
-        "text/plain": new Blob([text], { type: "text/plain" }),
+        "text/plain": new Blob([label], { type: "text/plain" }),
       });
       navigator.clipboard.write([clipboardItem]).then(() => {
         showMessage("Copied text", 1500);
       }).catch(() => showMessage("Error copying 😔"));
     } else {
       const clipboardItem = new ClipboardItem({
-        "text/plain": new Blob([link], { type: "text/plain" }),
+        "text/plain": new Blob([content], { type: "text/plain" }),
       });
       navigator.clipboard.write([clipboardItem]).then(() => {
-        showMessage("Copied link", 1500);
+        showMessage("Copied", 1500);
       }).catch(() => {
         showMessage("Error copying 😔", 1500);
       });

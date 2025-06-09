@@ -37,7 +37,7 @@ export const ToastProvider = (
       {children}
       {
         <dialog
-          class="fixed px-6 py-1 border shadow-md top-6 animate-bounce border-neutral-500 rounded-md shadow-neutral-500/50 outline-blue-500"
+          class="fixed z-50 px-6 py-1 border shadow-md top-6 animate-bounce border-neutral-500 rounded-md shadow-neutral-500/50 outline-blue-500"
           ref={toastRef}
         >
         </dialog>
