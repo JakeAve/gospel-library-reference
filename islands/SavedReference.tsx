@@ -7,13 +7,11 @@ export interface RefItemProps extends RefWithId {
 }
 
 export default function (props: RefItemProps) {
-  const { id, deleteCallback } = props;
+  const { id, deleteCallback, reference } = props;
 
   async function deleteItem() {
     const shouldDelete = confirm(
-      `Are you sure you want to delete this link to ${props.book.name}${
-        props.chapter ? " " + props.chapter : ""
-      }?`,
+      `Are you sure you want to delete this link to ${reference}?`,
     );
 
     if (shouldDelete) {
