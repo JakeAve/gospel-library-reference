@@ -43,9 +43,7 @@ function init(): Promise<
             STORE_NAME,
           );
         };
-      }
-
-      if (e.oldVersion === 1 && e.newVersion === 2) {
+      } else if (e.oldVersion === 1 && e.newVersion === 2) {
         const transaction: IDBTransaction = (e.target as IDBOpenDBRequest)
           .transaction!;
         const store: IDBObjectStore = transaction.objectStore(STORE_NAME);
@@ -79,6 +77,18 @@ function init(): Promise<
             }
           };
         });
+      } else if (e.newVersion === 2) {
+        const db = request.result;
+        const store = db.createObjectStore(STORE_NAME, {
+          keyPath: "id",
+          autoIncrement: true,
+        });
+
+        store.transaction.oncomplete = (_event: Event) => {
+          db.transaction(STORE_NAME, "readwrite").objectStore(
+            STORE_NAME,
+          );
+        };
       }
     };
 
