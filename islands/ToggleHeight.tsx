@@ -1,4 +1,4 @@
-import { computed, Signal } from "@preact/signals";
+import { Signal, useComputed } from "@preact/signals";
 import type { Reference } from "@jakeave/scripture-ref/types";
 
 interface Props {
@@ -21,7 +21,7 @@ export default function ToggleHeight(props: Props) {
     toggleHeight,
   } = props;
 
-  const icon = computed(() => {
+  const icon = useComputed(() => {
     if (heightSignal.value === EXPANDED_HEIGHT) {
       return (
         <svg
@@ -49,7 +49,7 @@ export default function ToggleHeight(props: Props) {
     }
   });
 
-  const text = computed(() =>
+  const text = useComputed(() =>
     heightSignal.value === EXPANDED_HEIGHT ? "Collapse" : "Expand"
   );
 

@@ -1,5 +1,5 @@
-import { computed, signal } from "@preact/signals";
-import type { Reference } from "@jakeave/scripture-ref/types";
+import { signal, useComputed } from "@preact/signals";
+import type { ReferenceMatch } from "@jakeave/scripture-ref/types";
 import { parseRef } from "@jakeave/scripture-ref/client";
 import { findReference } from "../lib/findReference.ts";
 import { determineTextType } from "../lib/determineTextType.ts";
@@ -10,6 +10,7 @@ import ToggleHeight, {
   EXPANDED_HEIGHT,
 } from "./ToggleHeight.tsx";
 import { useRef } from "preact/hooks";
+import ResultsFromFind from "./ResultsFromFind.tsx";
 
 interface Props {
   refreshDB: () => void;
@@ -17,7 +18,7 @@ interface Props {
 
 const inputSignal = signal("");
 const heightSignal = signal(COLLAPSED_HEIGHT);
-const resultsSignal = signal<Reference[]>([]);
+const resultsSignal = signal<ReferenceMatch[]>([]);
 const isLoadingSearchResults = signal(false);
 
 export default function AddForm(props: Props) {
@@ -28,10 +29,10 @@ export default function AddForm(props: Props) {
   const { showMessage } = useToastContext();
 
   // state
-  const isSearchDisabled = computed(() => inputSignal.value.length < 5);
+  const isSearchDisabled = useComputed(() => inputSignal.value.length < 5);
 
   // conditional elements
-  const referenceElement = computed(() => {
+  const referenceElement = useComputed(() => {
     const val = inputSignal.value;
     if (val.trim() === "") {
       return;
@@ -49,7 +50,7 @@ export default function AddForm(props: Props) {
     return <ResultItem reference={parseRef(val)} refreshDB={refreshDB} />;
   });
 
-  const loadingElement = computed(() => {
+  const loadingElement = useComputed(() => {
     if (isLoadingSearchResults.value) {
       return (
         <div class="flex justify-center">
@@ -69,20 +70,18 @@ export default function AddForm(props: Props) {
     }
   });
 
-  const resultsElement = computed(() => {
+  const resultsElement = useComputed(() => {
     if (!resultsSignal.value.length) return;
     return (
-      <>
-        <div class="flex flex-col gap-4">
-          {resultsSignal.value.map((r, i) => (
-            <ResultItem key={i} reference={r} refreshDB={refreshDB} />
-          ))}
-        </div>
-      </>
+      <ResultsFromFind
+        resultsSignal={resultsSignal}
+        refreshDB={refreshDB}
+        inputSignal={inputSignal}
+      />
     );
   });
 
-  const cancelButton = computed(() => {
+  const cancelButton = useComputed(() => {
     if (!inputSignal.value) return;
     return (
       <button
@@ -127,7 +126,10 @@ export default function AddForm(props: Props) {
       e.preventDefault();
       isLoadingSearchResults.value = true;
       heightSignal.value = EXPANDED_HEIGHT;
-      const results = await findReference(inputSignal.value);
+      const results = await findReference(inputSignal.value, {
+        start: 0,
+        end: 5,
+      });
       if (!results.length) {
         showMessage(`No results found for ${inputSignal.value}`);
       }

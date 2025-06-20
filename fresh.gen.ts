@@ -11,6 +11,7 @@ import * as $CopyBtn from "./islands/CopyBtn.tsx";
 import * as $FoundReference from "./islands/FoundReference.tsx";
 import * as $Main from "./islands/Main.tsx";
 import * as $ReferenceContent from "./islands/ReferenceContent.tsx";
+import * as $ResultsFromFind from "./islands/ResultsFromFind.tsx";
 import * as $SavedReference from "./islands/SavedReference.tsx";
 import * as $ToggleHeight from "./islands/ToggleHeight.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -28,6 +29,7 @@ const manifest = {
     "./islands/FoundReference.tsx": $FoundReference,
     "./islands/Main.tsx": $Main,
     "./islands/ReferenceContent.tsx": $ReferenceContent,
+    "./islands/ResultsFromFind.tsx": $ResultsFromFind,
     "./islands/SavedReference.tsx": $SavedReference,
     "./islands/ToggleHeight.tsx": $ToggleHeight,
   },

@@ -1,5 +1,4 @@
-import { computed, signal } from "@preact/signals";
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { signal, useComputed, useSignal } from "@preact/signals";
 import { JSX } from "preact/jsx-runtime/src/index.d.ts";
 import { addContent } from "../lib/indexedDB.ts";
 import { fetchContent } from "../lib/fetchContent.ts";
@@ -17,17 +16,9 @@ const errorSignal = signal("");
 export default function ReferenceContent(props: Props) {
   const { api, id, content } = props;
 
-  if (!api) {
-    return <p>Cannot pull content</p>;
-  }
+  const contentSignal = useSignal(content || "");
 
-  if (!IS_BROWSER) {
-    return <p>Cannot pull content outside of browser</p>;
-  }
-
-  const contentSignal = signal(content || "");
-
-  const displayedMessage = computed(() => {
+  const displayedMessage = useComputed(() => {
     if (errorSignal.value) return errorSignal.value;
     return isLoading.value
       ? (

@@ -1,4 +1,4 @@
-import { computed, signal } from "@preact/signals";
+import { signal, useComputed } from "@preact/signals";
 import { getAll, RefWithId } from "../lib/indexedDB.ts";
 import ReferenceItem from "./SavedReference.tsx";
 import AddForm from "./AddForm.tsx";
@@ -12,7 +12,7 @@ export default function Form() {
     });
   }
 
-  const storedRefs = computed(() => {
+  const storedRefs = useComputed(() => {
     return dbList.value.map((r) => (
       <ReferenceItem key={r.id} deleteCallback={deleteCallback} {...r} />
     ));
