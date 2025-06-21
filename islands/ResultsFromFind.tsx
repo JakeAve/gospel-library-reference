@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "preact/hooks";
-import { type Signal, signal } from "@preact/signals";
+import { type Signal, useSignal } from "@preact/signals";
 import { ReferenceMatch } from "@jakeave/scripture-ref/types";
 import ResultItem from "./FoundReference.tsx";
 import { findReference } from "../lib/findReference.ts";
@@ -10,10 +10,9 @@ interface Props {
   inputSignal: Signal<string>;
 }
 
-const isIncomplete = signal(true);
-
 export default function ResultsFromFind(props: Props) {
   const { resultsSignal, refreshDB, inputSignal } = props;
+  const isIncomplete = useSignal(true);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
