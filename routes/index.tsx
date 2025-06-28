@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <ToastProvider>
       <main>
-        <div class="p-2 pb-2 mb-4">
+        <div class="p-2 pb-2 mb-4 grid justify-between grid-cols-3">
           <div class="flex items-center text-sm font-thin gap-2">
             <a
               href="https://github.com/JakeAve/gospel-library-reference"
@@ -39,9 +39,11 @@ export default function Home() {
               </svg>
             </a>
           </div>
-          <h1 class="text-lg tracking-widest text-center">
-            GospelLibrary.Link
-          </h1>
+          <a href="/">
+            <h1 class="text-sm tracking-[0.35rem] text-center justify-self-center">
+              GospelLibrary.Link
+            </h1>
+          </a>
         </div>
         <Main />
       </main>
