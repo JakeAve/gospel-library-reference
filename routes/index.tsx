@@ -39,7 +39,10 @@ export default function Home() {
               </svg>
             </a>
           </div>
-          <a class="md:justify-self-center flex items-center justify-end md:justify-center" href="/">
+          <a
+            class="md:justify-self-center flex items-center justify-end md:justify-center"
+            href="/"
+          >
             <h1 class="text-xs tracking-[0.2rem] md:tracking-[0.4rem]">
               GospelLibrary.Link
             </h1>
