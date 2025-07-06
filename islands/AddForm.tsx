@@ -1,4 +1,4 @@
-import { signal, useComputed } from "@preact/signals";
+import { useComputed, useSignal, useSignalEffect } from "@preact/signals";
 import type { ReferenceMatch } from "@jakeave/scripture-ref/types";
 import { parseRef } from "@jakeave/scripture-ref/client";
 import { findReference } from "../lib/findReference.ts";
@@ -11,22 +11,34 @@ import ToggleHeight, {
 } from "./ToggleHeight.tsx";
 import { useRef } from "preact/hooks";
 import ResultsFromFind from "./ResultsFromFind.tsx";
+import { addFindToUrl, readFindFromURL } from "../lib/urlUpdater.ts";
 
 interface Props {
   refreshDB: () => void;
 }
 
-const inputSignal = signal("");
-const heightSignal = signal(COLLAPSED_HEIGHT);
-const resultsSignal = signal<ReferenceMatch[]>([]);
-const isLoadingSearchResults = signal(false);
-
 export default function AddForm(props: Props) {
   const { refreshDB } = props;
+  const inputSignal = useSignal(readFindFromURL());
+  const heightSignal = useSignal(COLLAPSED_HEIGHT);
+  const resultsSignal = useSignal<ReferenceMatch[]>([]);
+  const isLoadingSearchResults = useSignal(false);
 
   // hooks
   const inputRef = useRef<HTMLInputElement>(null);
   const { showMessage } = useToastContext();
+
+  useSignalEffect(() => {
+    addFindToUrl(inputSignal.value);
+  });
+
+  useSignalEffect(() => {
+    if (inputSignal.value.trim()) {
+      heightSignal.value = EXPANDED_HEIGHT;
+    } else {
+      heightSignal.value = COLLAPSED_HEIGHT;
+    }
+  });
 
   // state
   const isSearchDisabled = useComputed(() => inputSignal.value.length < 5);
@@ -114,11 +126,6 @@ export default function AddForm(props: Props) {
     const text = inputField.value;
     inputSignal.value = text;
     resultsSignal.value = [];
-    if (text.trim()) {
-      heightSignal.value = EXPANDED_HEIGHT;
-    } else {
-      heightSignal.value = COLLAPSED_HEIGHT;
-    }
   }
 
   async function search(e: SubmitEvent) {
@@ -167,6 +174,7 @@ export default function AddForm(props: Props) {
             autoFocus
             onInput={updateInput}
             ref={inputRef}
+            value={inputSignal}
           />
           {cancelButton}
           <button
