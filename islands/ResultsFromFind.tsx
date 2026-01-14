@@ -8,10 +8,11 @@ interface Props {
   resultsSignal: Signal<ReferenceMatch[]>;
   refreshDB: () => void;
   inputSignal: Signal<string>;
+  filtersSignal: Signal<{ volumes: string[]; books: string[] }>;
 }
 
 export default function ResultsFromFind(props: Props) {
-  const { resultsSignal, refreshDB, inputSignal } = props;
+  const { resultsSignal, refreshDB, inputSignal, filtersSignal } = props;
   const isIncomplete = useSignal(true);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -35,6 +36,8 @@ export default function ResultsFromFind(props: Props) {
     const results = await findReference(inputSignal.value, {
       start: resultsPeek.length,
       end: resultsPeek.length + 5,
+      books: filtersSignal.value.books,
+      volumes: filtersSignal.value.volumes,
     });
 
     if (!results.length) {

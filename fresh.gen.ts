@@ -8,6 +8,7 @@ import * as $index from "./routes/index.tsx";
 import * as $AddForm from "./islands/AddForm.tsx";
 import * as $Contexts_Toast from "./islands/Contexts/Toast.tsx";
 import * as $CopyBtn from "./islands/CopyBtn.tsx";
+import * as $Filters from "./islands/Filters.tsx";
 import * as $FoundReference from "./islands/FoundReference.tsx";
 import * as $Main from "./islands/Main.tsx";
 import * as $ReferenceContent from "./islands/ReferenceContent.tsx";
@@ -26,6 +27,7 @@ const manifest = {
     "./islands/AddForm.tsx": $AddForm,
     "./islands/Contexts/Toast.tsx": $Contexts_Toast,
     "./islands/CopyBtn.tsx": $CopyBtn,
+    "./islands/Filters.tsx": $Filters,
     "./islands/FoundReference.tsx": $FoundReference,
     "./islands/Main.tsx": $Main,
     "./islands/ReferenceContent.tsx": $ReferenceContent,

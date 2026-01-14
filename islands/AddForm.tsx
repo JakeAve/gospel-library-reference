@@ -11,7 +11,12 @@ import ToggleHeight, {
 } from "./ToggleHeight.tsx";
 import { useRef } from "preact/hooks";
 import ResultsFromFind from "./ResultsFromFind.tsx";
-import { addFindToUrl, readFindFromURL } from "../lib/urlUpdater.ts";
+import {
+  addFindToUrl,
+  readFiltersFromURL,
+  readFindFromURL,
+} from "../lib/urlUpdater.ts";
+import Filters from "./Filters.tsx";
 
 interface Props {
   refreshDB: () => void;
@@ -20,6 +25,7 @@ interface Props {
 export default function AddForm(props: Props) {
   const { refreshDB } = props;
   const inputSignal = useSignal(readFindFromURL());
+  const filtersSignal = useSignal(readFiltersFromURL());
   const heightSignal = useSignal(COLLAPSED_HEIGHT);
   const resultsSignal = useSignal<ReferenceMatch[]>([]);
   const isLoadingSearchResults = useSignal(false);
@@ -89,6 +95,7 @@ export default function AddForm(props: Props) {
         resultsSignal={resultsSignal}
         refreshDB={refreshDB}
         inputSignal={inputSignal}
+        filtersSignal={filtersSignal}
       />
     );
   });
@@ -97,15 +104,15 @@ export default function AddForm(props: Props) {
     if (!inputSignal.value) return;
     return (
       <button
-        class={`absolute left-0 top-3 text-neutral-400`}
+        class={`absolute left-0 top-2 text-neutral-400`}
         type="reset"
         aria-label="reset"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          height="16px"
+          height="20px"
           viewBox="0 -960 960 960"
-          width="16px"
+          width="20px"
           fill="currentColor"
         >
           <path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
@@ -136,6 +143,8 @@ export default function AddForm(props: Props) {
       const results = await findReference(inputSignal.value, {
         start: 0,
         end: 5,
+        books: filtersSignal.value.books,
+        volumes: filtersSignal.value.volumes,
       });
       if (!results.length) {
         showMessage(`No results found for ${inputSignal.value}`);
@@ -163,12 +172,15 @@ export default function AddForm(props: Props) {
         onReset={reset}
         disabled={isSearchDisabled}
       >
-        <label class="text-xl font-light" for="reference">
-          Find a scripture
-        </label>
+        <div class="flex gap-4 items-center">
+          <label class="text-xl font-light" for="reference">
+            Find a scripture
+          </label>
+          <Filters filtersSignal={filtersSignal} />
+        </div>
         <div class="relative flex gap-2">
           <input
-            class="flex-auto py-1 text-xl font-light bg-transparent border-b-2 rounded-none outline-none ps-6 pe-1 border-neutral-400 dark:focus:border-neutral-200 focus:border-black"
+            class="flex-auto py-1 text-xl font-light bg-transparent border-b-2 rounded-none outline-none ps-7 pe-1 border-neutral-400 dark:focus:border-neutral-200 focus:border-black"
             name="reference"
             id="reference"
             autoFocus

@@ -2,7 +2,12 @@ import { ReferenceMatch } from "@jakeave/scripture-ref/types";
 
 export async function findReference(
   ref: string,
-  { start, end }: { start: number; end: number },
+  { start, end, books = [], volumes = [] }: {
+    start: number;
+    end: number;
+    books?: string[];
+    volumes?: string[];
+  },
 ): Promise<ReferenceMatch[]> {
   try {
     const apiUrl = globalThis.API_URL;
@@ -16,6 +21,12 @@ export async function findReference(
     url.searchParams.append("ref", ref);
     url.searchParams.append("start", start.toString());
     url.searchParams.append("end", end.toString());
+    for (const b of books) {
+      url.searchParams.append("book", b);
+    }
+    for (const v of volumes) {
+      url.searchParams.append("volume", v);
+    }
 
     const resp = await fetch(url.toString());
 
