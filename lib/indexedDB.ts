@@ -3,9 +3,9 @@ import type { Reference } from "@jakeave/scripture-ref/types";
 import { parseRef } from "@jakeave/scripture-ref/client";
 
 interface OldReference {
-  book: Book;
+  book: { name: string };
   chapter?: number;
-  ranges: VerseRange;
+  ranges: (number | [number, number])[];
 }
 
 const DB_NAME = "saved_references";
