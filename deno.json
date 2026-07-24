@@ -2,7 +2,11 @@
   "lock": false,
   "version": "0.1.7",
   "tasks": {
+    "setup": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit .githooks/pre-push",
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+    "test": "deno test -A --no-check",
+    "pre-commit": "deno task check",
+    "pre-push": "deno task check && deno task test",
     "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
     "manifest": "deno task cli manifest $(pwd)",
     "start": "deno run -A --watch=static/,routes/ dev.ts",

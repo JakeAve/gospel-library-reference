@@ -4,13 +4,17 @@ Webapp to create Gospel Library compatible links
 
 ## Setup
 
+Make sure to install Deno: https://deno.land/manual/getting_started/installation
+
+Then configure the git hooks:
+
 ```
-git config core.hooksPath hooks/
-chmod +x ./hooks/pre-commit
-chmod +x ./hooks/pre-push
+deno task setup
 ```
 
-Make sure to install Deno: https://deno.land/manual/getting_started/installation
+This points git at `.githooks/` and marks the hooks executable. The repo ships
+pre-commit and pre-push hooks that run `deno task check` (and `deno task test`
+on push) before each commit/push.
 
 Then start the project:
 
