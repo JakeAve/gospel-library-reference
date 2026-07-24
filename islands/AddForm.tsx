@@ -170,7 +170,6 @@ export default function AddForm(props: Props) {
         autoComplete="off"
         onSubmit={search}
         onReset={reset}
-        disabled={isSearchDisabled}
       >
         <div class="flex gap-4 items-center">
           <label class="text-xl font-light" for="reference">

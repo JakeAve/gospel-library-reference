@@ -1,5 +1,5 @@
 import { signal, useComputed, useSignal } from "@preact/signals";
-import { JSX } from "preact/jsx-runtime/src/index.d.ts";
+import type { JSX } from "preact";
 import { addContent } from "../lib/indexedDB.ts";
 import { fetchContent } from "../lib/fetchContent.ts";
 import { CopyBtn } from "./CopyBtn.tsx";

@@ -1,5 +1,5 @@
 import { determineTextType } from "./determineTextType.ts";
-import { assertEquals } from "$std/assert/mod.ts";
+import { assertEquals } from "@std/assert";
 
 Deno.test("1 nephi 3:7", () => {
   const input = "1 nephi 3:7";

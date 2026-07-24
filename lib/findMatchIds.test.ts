@@ -1,4 +1,4 @@
-import { assertEquals } from "$std/assert/mod.ts";
+import { assertEquals } from "@std/assert";
 import { findMatchIdxs } from "./findMatchIdxs.ts";
 
 Deno.test("Will match", () => {

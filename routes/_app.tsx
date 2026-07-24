@@ -1,5 +1,6 @@
 // deno-lint-ignore-file react-no-danger
-import { type PageProps } from "$fresh/server.ts";
+import type { PageProps } from "fresh";
+
 export default function App({ Component }: PageProps) {
   return (
     <html>
@@ -11,15 +12,12 @@ export default function App({ Component }: PageProps) {
           name="description"
           content="Create links to verses from the Gospel Library App from the Church of Jesus Christ of Latter-day Saints"
         />
-        <link rel="stylesheet" href="/styles.css" />
         <link
           crossorigin="use-credentials"
           rel="manifest"
           href="/manifest.json"
         />
-        {Deno.env.get("DENO_ENV") !== "development" && (
-          <script type="module" src="/register.js" />
-        )}
+        {!import.meta.env.DEV && <script type="module" src="/register.js" />}
         <script
           dangerouslySetInnerHTML={{
             __html: `window.API_URL="${Deno.env.get("API_URL")}";`,
