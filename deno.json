@@ -1,6 +1,6 @@
 {
   "lock": false,
-  "version": "0.1.7",
+  "version": "0.1.8",
   "tasks": {
     "setup": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit .githooks/pre-push",
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
