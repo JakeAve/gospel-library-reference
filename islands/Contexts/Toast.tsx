@@ -14,7 +14,7 @@ export const ToastProvider = (
   { children }: { children: preact.ComponentChildren },
 ) => {
   const toastRef = useRef<HTMLDialogElement>(null);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function showMessage(message: string, timeout = 3000) {
     if (timeoutRef.current) {

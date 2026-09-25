@@ -20,7 +20,9 @@ export default function App({ Component }: PageProps) {
         {!import.meta.env.DEV && <script type="module" src="/register.js" />}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.API_URL="${Deno.env.get("API_URL")}";`,
+            __html: `window.API_URL=${
+              JSON.stringify(Deno.env.get("API_URL") ?? "")
+            };`,
           }}
         >
         </script>
