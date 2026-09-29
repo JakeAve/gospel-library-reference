@@ -15,7 +15,7 @@
     "build": "vite build",
     "preview": "deno serve -A --env-file _fresh/server.js",
     "update": "deno run -A -r jsr:@fresh/update .",
-    "version": "deno run --allow-read=./routes/index.tsx,./deno.json --allow-write=./routes/index.tsx,./deno.json ./scripts/updateVersion.ts"
+    "version": "deno run --allow-read=./components/Header.tsx,./deno.json --allow-write=./components/Header.tsx,./deno.json ./scripts/updateVersion.ts"
   },
   "lint": {
     "rules": {

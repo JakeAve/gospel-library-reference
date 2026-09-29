@@ -1,7 +1,7 @@
 import config from "../deno.json" with { type: "json" };
 
 const CONFIG_PATH = "./deno.json";
-const UI_PATH = "./routes/index.tsx";
+const UI_PATH = "./components/Header.tsx";
 
 const currentVersion = config.version;
 
