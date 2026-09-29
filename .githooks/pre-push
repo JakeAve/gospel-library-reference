@@ -11,7 +11,7 @@ if [[ "$LAST_COMMIT_MESSAGE" != *"Auto update version"* ]]; then
         exit 1
     fi
 
-    git add ./deno.json ./routes/index.tsx
+    git add ./deno.json ./components/Header.tsx
     if [ $? -ne 0 ]; then
         echo "Failed to stage updated files. Please check the issue and try again."
         exit 1
