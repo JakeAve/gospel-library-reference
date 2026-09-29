@@ -11,3 +11,14 @@ _fresh/
 node_modules/
 
 .DS_Store
+# Agent scratch dirs
+.superpowers/
+.playwright-mcp/
+.playwright-profile/
+.impeccable/
+.worktrees/
+.claude/worktrees/
+.claude/settings.local.json
+
+# Specs and plans (local only)
+docs/
