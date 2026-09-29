@@ -1,2 +1,2 @@
-- [ ] Checklist of references to copy together
+- [x] Checklist of references to copy together
 - [x] Filter by book

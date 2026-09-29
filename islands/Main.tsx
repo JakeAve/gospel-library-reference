@@ -2,6 +2,7 @@ import { signal, useComputed } from "@preact/signals";
 import { getAll, RefWithId } from "../lib/indexedDB.ts";
 import ReferenceItem from "./SavedReference.tsx";
 import AddForm from "./AddForm.tsx";
+import ShareDialog from "./ShareDialog.tsx";
 
 const dbList = signal<RefWithId[]>([]);
 
@@ -51,7 +52,10 @@ export default function Form() {
         />
       </div>
       <div class="flex flex-col max-w-lg px-4 pb-8 mx-auto mt-4 text-sm gap-2">
-        <h2 class="px-2 tracking-widest">Saved</h2>
+        <div class="flex justify-between items-center">
+          <h2 class="px-2 tracking-widest">Saved</h2>
+          {dbList.value.length > 0 && <ShareDialog refs={dbList.value} />}
+        </div>
         {storedRefs}
       </div>
     </div>
