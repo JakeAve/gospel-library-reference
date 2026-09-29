@@ -1,5 +1,5 @@
 import { signal, useSignal } from "@preact/signals";
-import { useEffect, useRef } from "preact/hooks";
+import { useLayoutEffect, useRef } from "preact/hooks";
 import { generate } from "lean-qr";
 import { toSvgDataURL } from "lean-qr/extras/svg";
 import type { RefWithId } from "../lib/indexedDB.ts";
@@ -37,7 +37,7 @@ export default function ShareDialog({ refs }: { refs: RefWithId[] }) {
     .filter(({ row, ref }) => ref && row.on && isShareable(ref))
     .map(({ ref }) => ref);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (focusId.current === null) return;
     dialog.current?.querySelector<HTMLElement>(
       `[data-handle="${focusId.current}"]`,
