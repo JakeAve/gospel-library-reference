@@ -61,14 +61,21 @@ Deno.test("isShareable: true for a verse ref", () => {
 
 Deno.test("shareUrl: default lowercase", () => {
   assertEquals(
-    shareUrl("12345"),
+    shareUrl("https://gospellibrary.link", "12345"),
     "https://gospellibrary.link/s/12345",
   );
 });
 
 Deno.test("shareUrl: qr uppercases host and path, keeps digits", () => {
   assertEquals(
-    shareUrl("12345", { qr: true }),
+    shareUrl("https://gospellibrary.link", "12345", { qr: true }),
     "HTTPS://GOSPELLIBRARY.LINK/S/12345",
+  );
+});
+
+Deno.test("shareUrl: qr keeps a dev origin's port", () => {
+  assertEquals(
+    shareUrl("http://localhost:5173", "12345", { qr: true }),
+    "HTTP://LOCALHOST:5173/S/12345",
   );
 });

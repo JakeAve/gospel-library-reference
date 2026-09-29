@@ -91,13 +91,16 @@ export default function ShareDialog({ refs }: { refs: RefWithId[] }) {
   const digits = step.value === "qr" ? encode(checked) : "";
 
   function copy() {
-    navigator.clipboard.writeText(shareUrl(digits)).then(() => {
-      copyState.value = "ok";
-      setTimeout(() => copyState.value = "", 1500);
-    }, () => {
-      copyState.value = "fail";
-      setTimeout(() => copyState.value = "", 1500);
-    });
+    navigator.clipboard.writeText(shareUrl(location.origin, digits)).then(
+      () => {
+        copyState.value = "ok";
+        setTimeout(() => copyState.value = "", 1500);
+      },
+      () => {
+        copyState.value = "fail";
+        setTimeout(() => copyState.value = "", 1500);
+      },
+    );
   }
 
   async function share() {
@@ -105,7 +108,7 @@ export default function ShareDialog({ refs }: { refs: RefWithId[] }) {
     try {
       await navigator.share({
         title: "Scripture references",
-        url: shareUrl(digits),
+        url: shareUrl(location.origin, digits),
       });
     } catch (err) {
       if ((err as DOMException).name !== "AbortError") copy();
@@ -231,7 +234,9 @@ export default function ShareDialog({ refs }: { refs: RefWithId[] }) {
                   <figure class="flex flex-col items-center justify-center shrink-0 gap-2">
                     <img
                       src={toSvgDataURL(
-                        generate(shareUrl(digits, { qr: true })),
+                        generate(
+                          shareUrl(location.origin, digits, { qr: true }),
+                        ),
                         { on: "black", off: "white", pad: 4 },
                       )}
                       alt="QR code for the shared list"

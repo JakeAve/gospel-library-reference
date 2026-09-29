@@ -1,8 +1,6 @@
 import type { Reference } from "@jakeave/scripture-ref/types";
 import { encode } from "./refCodec.ts";
 
-export const SHARE_ORIGIN = "https://gospellibrary.link";
-
 export interface ShareRow {
   id: number;
   on: boolean;
@@ -31,8 +29,13 @@ export function move<T>(list: T[], from: number, to: number): T[] {
   return copy;
 }
 
-export function shareUrl(digits: string, opts?: { qr?: boolean }): string {
-  const url = `${SHARE_ORIGIN}/s/${digits}`;
+/** `origin` is the page's own (`location.origin`), so links work in any env. */
+export function shareUrl(
+  origin: string,
+  digits: string,
+  opts?: { qr?: boolean },
+): string {
+  const url = `${origin}/s/${digits}`;
   return opts?.qr ? url.slice(0, -digits.length).toUpperCase() + digits : url;
 }
 
