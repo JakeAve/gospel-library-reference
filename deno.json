@@ -1,6 +1,10 @@
 {
   "lock": false,
   "version": "0.1.9",
+  "minimumDependencyAge": {
+    "age": "P1D",
+    "exclude": ["jsr:@jakeave/scripture-ref"]
+  },
   "tasks": {
     "setup": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit .githooks/pre-push",
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
@@ -25,7 +29,7 @@
   "imports": {
     "fresh": "jsr:@fresh/core@^2.3.3",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.1.2",
-    "@jakeave/scripture-ref": "jsr:@jakeave/scripture-ref@^0.0.6",
+    "@jakeave/scripture-ref": "jsr:@jakeave/scripture-ref@^0.0.11",
     "@std/assert": "jsr:@std/assert@^1.0.11",
     "preact": "npm:preact@^10.29.1",
     "@preact/signals": "npm:@preact/signals@^2.9.0",
