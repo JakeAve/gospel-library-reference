@@ -10,10 +10,16 @@ interface Data {
   refs: Reference[];
 }
 
+// 20 refs is ~124 digits; 2000 is generous headroom. BigInt decode is O(n^2),
+// so cap it before decoding rather than let arbitrarily long input hang.
+const MAX_DIGITS = 2000;
+
 export function handler(ctx: Context<unknown>) {
   let refs: Reference[] = [];
   try {
-    refs = decode(ctx.params.digits);
+    if (ctx.params.digits.length <= MAX_DIGITS) {
+      refs = decode(ctx.params.digits);
+    }
   } catch (e) {
     if (!(e instanceof RangeError)) throw e;
   }

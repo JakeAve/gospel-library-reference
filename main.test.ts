@@ -21,6 +21,11 @@ Deno.test("/s/ with bad digits is a 400 broken page", async () => {
   assert((await res.text()).includes("looks broken"));
 });
 
+Deno.test("/s/ with digits over the length cap is a 400 broken page", async () => {
+  const res = await get(`/s/${"1".repeat(2001)}`);
+  assertEquals(res.status, 400);
+});
+
 Deno.test("/s/ renders the shared list", async () => {
   const res = await get(`/s/${encode([parseRef("Alma 32:21")])}`);
   assertEquals(res.status, 200);

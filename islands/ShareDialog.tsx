@@ -29,7 +29,7 @@ export default function ShareDialog({ refs }: { refs: RefWithId[] }) {
   const dragFrom = useRef<number | null>(null);
   const focusId = useRef<number | null>(null);
   const step = useSignal<"choose" | "qr">("choose");
-  const copied = useSignal(false);
+  const copyState = useSignal<"" | "ok" | "fail">("");
 
   const byId = new Map(refs.map((r) => [r.id, r]));
   const checked = rows.value
@@ -92,8 +92,11 @@ export default function ShareDialog({ refs }: { refs: RefWithId[] }) {
 
   function copy() {
     navigator.clipboard.writeText(shareUrl(digits)).then(() => {
-      copied.value = true;
-      setTimeout(() => copied.value = false, 1500);
+      copyState.value = "ok";
+      setTimeout(() => copyState.value = "", 1500);
+    }, () => {
+      copyState.value = "fail";
+      setTimeout(() => copyState.value = "", 1500);
     });
   }
 
@@ -260,7 +263,11 @@ export default function ShareDialog({ refs }: { refs: RefWithId[] }) {
                   </button>
                   <button type="button" class={outlined} onClick={copy}>
                     <span aria-live="polite">
-                      {copied.value ? "Copied ✓" : "Copy link"}
+                      {copyState.value === "ok"
+                        ? "Copied ✓"
+                        : copyState.value === "fail"
+                        ? "Copy failed"
+                        : "Copy link"}
                     </span>
                   </button>
                   <button type="button" class={filled} onClick={share}>
