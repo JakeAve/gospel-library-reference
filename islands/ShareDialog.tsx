@@ -88,6 +88,10 @@ export default function ShareDialog({ refs }: { refs: RefWithId[] }) {
     rows.value = rows.value.map((r) => r.id === id ? { ...r, on: !r.on } : r);
   }
 
+  function setAll(on: boolean) {
+    rows.value = rows.value.map((r) => ({ ...r, on }));
+  }
+
   const digits = step.value === "qr" ? encode(checked) : "";
 
   function copy() {
@@ -156,6 +160,22 @@ export default function ShareDialog({ refs }: { refs: RefWithId[] }) {
           {step.value === "choose"
             ? (
               <>
+                <div class="flex gap-2 px-2 text-sm text-blue-600 dark:text-blue-400">
+                  <button
+                    type="button"
+                    class="min-h-11 px-3"
+                    onClick={() => setAll(true)}
+                  >
+                    Select all
+                  </button>
+                  <button
+                    type="button"
+                    class="min-h-11 px-3"
+                    onClick={() => setAll(false)}
+                  >
+                    Unselect all
+                  </button>
+                </div>
                 <ol
                   ref={list}
                   class="flex-1 overflow-y-auto px-2 text-sm"

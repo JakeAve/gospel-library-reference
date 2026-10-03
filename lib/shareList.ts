@@ -9,7 +9,7 @@ export interface ShareRow {
 /**
  * Reconciles the dialog's rows against the saved ids (oldest-first).
  * Existing rows keep their order for ids still saved; the rest are dropped;
- * new ids are appended, in savedIds order, as `on: true`.
+ * new ids are appended, in savedIds order, as `on: false`.
  */
 export function reconcile(rows: ShareRow[], savedIds: number[]): ShareRow[] {
   const saved = new Set(savedIds);
@@ -17,7 +17,7 @@ export function reconcile(rows: ShareRow[], savedIds: number[]): ShareRow[] {
   const kept = rows.filter((r) => saved.has(r.id));
   const added = savedIds
     .filter((id) => !existingIds.has(id))
-    .map((id): ShareRow => ({ id, on: true }));
+    .map((id): ShareRow => ({ id, on: false }));
   return [...kept, ...added];
 }
 

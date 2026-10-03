@@ -10,7 +10,7 @@ import {
 
 Deno.test("reconcile: first open with empty rows", () => {
   const result = reconcile([], [3, 1]);
-  assertEquals(result, [{ id: 3, on: true }, { id: 1, on: true }]);
+  assertEquals(result, [{ id: 3, on: false }, { id: 1, on: false }]);
 });
 
 Deno.test("reconcile: drops rows no longer saved", () => {
@@ -24,8 +24,8 @@ Deno.test("reconcile: appends new ids in savedIds order", () => {
   const result = reconcile(rows, [1, 5, 4]);
   assertEquals(result, [
     { id: 1, on: false },
-    { id: 5, on: true },
-    { id: 4, on: true },
+    { id: 5, on: false },
+    { id: 4, on: false },
   ]);
 });
 
