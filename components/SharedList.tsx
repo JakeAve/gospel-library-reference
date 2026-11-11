@@ -4,12 +4,16 @@ import Header from "./Header.tsx";
 import SaveAllBtn from "../islands/SaveAllBtn.tsx";
 import Sheet from "../islands/Sheet.tsx";
 import { RefRow } from "../islands/Home.tsx";
-import { refreshSaved } from "../islands/state.ts";
+import { refreshSaved, rememberShared } from "../islands/state.ts";
+import { Icon } from "../islands/Icons.tsx";
 
 export default function SharedList({ digits }: { digits: string }) {
   const refs = decodeShared(digits);
   // The sheet's save button needs to know what's already saved.
-  useEffect(() => void refreshSaved(), []);
+  useEffect(() => {
+    refreshSaved();
+    if (refs.length) rememberShared(digits);
+  }, []);
 
   if (!refs.length) {
     return (
@@ -32,6 +36,10 @@ export default function SharedList({ digits }: { digits: string }) {
       <div class="page">
         <Header />
         <main>
+          <a href="/" class="btn-subtle back">
+            <Icon name="chevron-left" />
+            My list
+          </a>
           <h2 class="page-title">Shared with you</h2>
           <p class="sub">
             {refs.length}{" "}
