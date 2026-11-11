@@ -17,7 +17,7 @@ export default function Header() {
         >
           <Icon name="github" />
         </a>
-        <span id="version">v0.1.21</span>
+        <span id="version">v0.1.22</span>
         <a
           class="btn-icon neutral"
           href="/"
