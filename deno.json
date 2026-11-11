@@ -1,6 +1,6 @@
 {
   "lock": false,
-  "version": "0.1.17",
+  "version": "0.1.18",
   "minimumDependencyAge": {
     "age": "P1D",
     "exclude": ["jsr:@jakeave/scripture-ref"]
