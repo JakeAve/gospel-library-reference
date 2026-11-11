@@ -82,10 +82,10 @@ People use every copy format, so all stay one tap away, in this order:
    none" subtle button. Each row has a grip handle (drag, or arrow keys when
    focused) and a round check. Whole-book references are dimmed with the reason
    inline. Footer: "Show QR for N".
-2. **QR:** a white card in both themes so phones can scan it, the chosen
-   references, then the short link. Footer: "Copy link" (`btn-subtle`) and
-   "Share…" (`btn-primary`, `navigator.share`, falling back to copy). "‹ Choose"
-   keeps the pick and order.
+2. **QR:** the code in `--acc` on a `--card` card (a CSS mask, so it follows the
+   theme), the chosen references, then the short link. Footer: "Copy link"
+   (`btn-subtle`) and "Share…" (`btn-primary`, `navigator.share`, falling back
+   to copy). "‹ Choose" keeps the pick and order.
 3. **Recipient** (`/s/…`): "Shared with you", "N references, in the order your
    teacher picked", a full-width "Save all" that becomes a tinted "Saved N
    references". Rows open the reference sheet.

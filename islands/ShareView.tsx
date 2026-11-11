@@ -198,13 +198,19 @@ export function QrView() {
       />
       <div class="sheet-body">
         <figure class="qr">
-          <img
-            src={toSvgDataURL(generate(qrUrl), {
-              on: "black",
-              off: "white",
-              pad: 4,
-            })}
-            alt="QR code for the shared list"
+          <div
+            class="qr-code"
+            role="img"
+            aria-label="QR code for the shared list"
+            style={{
+              "--qr": `url("${
+                toSvgDataURL(generate(qrUrl), {
+                  on: "black",
+                  off: "transparent",
+                  pad: 4,
+                })
+              }")`,
+            }}
           />
         </figure>
         <ol class="qr-list">
