@@ -48,7 +48,11 @@ No button has a visible border. Use only these kinds:
   title centered, actions on the right.
 - Tapping the dimmed background or pressing Escape closes it; focus returns to
   whatever opened it.
-- Prefer `<dialog>` or `popover` with `commandfor` over hand-rolled state.
+- It's a non-modal `<dialog open>` over a scrim, not `showModal()` or a popover:
+  the search bar has to stay usable while the sheet is open, and a modal dialog
+  or light-dismiss popover would make it inert or close the sheet.
+- Toasts are a plain fixed element (no top layer needed, since nothing is
+  modal), always rendered so `role="status"` announces changes.
 
 ## Rows
 

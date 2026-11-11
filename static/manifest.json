@@ -1,8 +1,8 @@
 {
   "name": "Gospel Library Link",
   "short_name": "GL Link",
-  "theme_color": "#3B82F6",
-  "background_color": "#3B82F6",
+  "theme_color": "#2b4c9b",
+  "background_color": "#f6f5f2",
   "display": "fullscreen",
   "scope": "/",
   "start_url": "/",

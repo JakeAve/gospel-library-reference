@@ -1,5 +1,5 @@
 import type { Reference } from "@jakeave/scripture-ref/types";
-import { encode } from "./refCodec.ts";
+import { decode, encode } from "./refCodec.ts";
 
 export interface ShareRow {
   id: number;
@@ -47,4 +47,17 @@ export function isShareable(ref: Reference): boolean {
   } catch {
     return false;
   }
+}
+
+// 20 refs is ~124 digits; 2000 is generous headroom. BigInt decode is O(n^2),
+// so cap it before decoding rather than let arbitrarily long input hang.
+const MAX_DIGITS = 2000;
+
+export function decodeShared(digits: string): Reference[] {
+  try {
+    if (digits.length <= MAX_DIGITS) return decode(digits);
+  } catch (e) {
+    if (!(e instanceof RangeError)) throw e;
+  }
+  return [];
 }
