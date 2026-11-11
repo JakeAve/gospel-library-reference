@@ -55,8 +55,10 @@ export default function RefView(
     let gone = false;
     const load = () =>
       fetchContent(r.api!).then(
-        (text) => {
+        (parts) => {
           if (gone) return;
+          // Chapters keep a line per verse so they can be numbered.
+          const text = parts.join(r.verses.length ? " " : "\n");
           setVerse(text);
           const s = findSaved(r);
           if (s) addContent(s.id, text).then(refreshSaved, () => {});
@@ -86,6 +88,11 @@ export default function RefView(
   }
 
   const hasAbbr = r.book.name !== r.book.abbr;
+  // A chapter shows (and copies) one numbered verse per line.
+  const lines = !r.verses.length && verse.includes("\n")
+    ? verse.split("\n")
+    : null;
+  const text = lines ? lines.map((l, i) => `${i + 1} ${l}`).join("\n") : verse;
 
   return (
     <>
@@ -107,7 +114,7 @@ export default function RefView(
                 label="Copy verse and link"
                 onClick={() =>
                   copy(
-                    linkClip(r.reference, r.link, verse),
+                    linkClip(r.reference, r.link, text),
                     "Copied verse and link",
                   )}
               />
@@ -154,10 +161,21 @@ export default function RefView(
           <p class="verse">
             <IconBtn
               icon="copy"
-              label="Copy verse"
-              onClick={() => copy({ plain: verse }, "Copied verse")}
+              label={lines ? "Copy chapter" : "Copy verse"}
+              onClick={() =>
+                copy(
+                  { plain: text },
+                  lines ? "Copied chapter" : "Copied verse",
+                )}
             />
-            {verse}
+            {lines
+              ? lines.map((l, i) => (
+                <span key={i} class="vline">
+                  <span class="vnum">{i + 1}</span>
+                  {l}
+                </span>
+              ))
+              : verse}
           </p>
         )}
 
