@@ -1,6 +1,9 @@
 import { useSignal } from "@preact/signals";
 import type { Reference } from "@jakeave/scripture-ref/types";
 import { add, getAll } from "../lib/indexedDB.ts";
+import { refreshSaved } from "./state.ts";
+
+const plural = (n: number) => `${n} reference${n === 1 ? "" : "s"}`;
 
 export default function SaveAllBtn({ refs }: { refs: Reference[] }) {
   const result = useSignal<{ saved: number; existing: number } | null>(null);
@@ -8,6 +11,7 @@ export default function SaveAllBtn({ refs }: { refs: Reference[] }) {
   const error = useSignal(false);
 
   async function saveAll() {
+    if (busy.value) return;
     busy.value = true;
     error.value = false;
     try {
@@ -21,7 +25,7 @@ export default function SaveAllBtn({ refs }: { refs: Reference[] }) {
       }
       // A readonly read queues behind the writes above, so they're committed
       // before we say "Saved".
-      await getAll();
+      await refreshSaved();
       result.value = { saved, existing: refs.length - saved };
     } catch {
       // Retrying is safe: dedup re-reads getAll(), so a partial save is fine.
@@ -34,36 +38,22 @@ export default function SaveAllBtn({ refs }: { refs: Reference[] }) {
   if (result.value) {
     const { saved, existing } = result.value;
     return (
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <span>
-          Saved {saved}
-          {existing > 0 && ` · ${existing} already there`}
-        </span>
-        <a
-          href="/"
-          class="flex items-center min-h-[44px] px-2 underline text-blue-600 dark:text-blue-400"
-        >
-          Open my list
-        </a>
+      <div class="stack">
+        <div class="btn-subtle tint wide" role="status">
+          {saved ? `Saved ${plural(saved)}` : "Already saved"}
+          {saved > 0 && existing > 0 && ` · ${existing} already there`}
+        </div>
+        <a href="/" class="note">Open my list</a>
       </div>
     );
   }
 
   return (
-    <div class="flex flex-col gap-1">
-      <button
-        type="button"
-        disabled={busy.value}
-        onClick={saveAll}
-        class="w-full min-h-[44px] px-4 font-bold rounded-full bg-blue-600 text-white dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 active:scale-95 ease-out duration-300 disabled:opacity-60"
-      >
-        Save all to my list
+    <div class="stack">
+      <button type="button" class="btn-primary wide" onClick={saveAll}>
+        Save all
       </button>
-      {error.value && (
-        <span class="text-sm text-red-600 dark:text-red-400">
-          Couldn't save. Try again.
-        </span>
-      )}
+      {error.value && <p class="note">Couldn't save. Try again</p>}
     </div>
   );
 }

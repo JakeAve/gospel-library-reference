@@ -1,7 +1,7 @@
 import { assertEquals } from "@std/assert";
 import { parseRef } from "@jakeave/scripture-ref/client";
-import { encode } from "../lib/refCodec.ts";
-import { decodeShared } from "./SharedList.tsx";
+import { encode } from "./refCodec.ts";
+import { decodeShared } from "./shareList.ts";
 
 Deno.test("decodeShared: bad digits give an empty list", () => {
   assertEquals(decodeShared("abc"), []);

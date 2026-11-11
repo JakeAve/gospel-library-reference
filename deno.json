@@ -1,6 +1,6 @@
 {
   "lock": false,
-  "version": "0.1.15",
+  "version": "0.1.16",
   "minimumDependencyAge": {
     "age": "P1D",
     "exclude": ["jsr:@jakeave/scripture-ref"]
@@ -24,7 +24,7 @@
   "fmt": {
     "exclude": ["static/"]
   },
-  "exclude": ["dist/"],
+  "exclude": ["dist/", ".vite/"],
   "imports": {
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.4",
     "@jakeave/scripture-ref": "jsr:@jakeave/scripture-ref@^0.0.11",
@@ -33,8 +33,6 @@
     "@preact/signals": "npm:@preact/signals@^2.9.0",
     "vite": "npm:vite@^7.1.3",
     "@types/babel__core": "npm:@types/babel__core@^7.20.5",
-    "tailwindcss": "npm:tailwindcss@^4.1.10",
-    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.1.12",
     "lean-qr": "npm:lean-qr@^2.7.4"
   },
   "compilerOptions": {

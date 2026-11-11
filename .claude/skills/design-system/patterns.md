@@ -11,7 +11,10 @@
 
 ## Page layout
 
-- Top: the small letter-spaced wordmark, nothing else.
+- Top: the small letter-spaced wordmark on the left; GitHub, version, and update
+  as small `--ink-2` items on the right.
+- Submitting text with a number and fewer than four words opens it as a
+  reference; anything else is a keyword search.
 - Body: the saved list ("Saved · N" with a subtle Share button).
 - Bottom: the floating search bar.
 - Everything secondary (a reference, results, the filter, sharing) opens in the
@@ -36,14 +39,18 @@ People use every copy format, so all stay one tap away, in this order:
 
 - No group labels; the accent color marks the links.
 - A book without an abbreviation collapses each pair to one full-width tile.
-- Save toggles between bookmark-plus and bookmark-minus, with a toast.
+- Save toggles between bookmark-plus and bookmark-minus, with a toast. Removing
+  shows "Removed from saved" with Undo, which restores the same row.
+- A range's text is one string from the API, so there are no inline verse
+  numbers.
 - Saved rows and search results open this sheet. Rows have no copy buttons of
   their own.
 
 ## Keyword results
 
-- Sheet header: "N of M matches" on the left, the filter chip on the right
-  (`btn-subtle`, labelled "All books ▾", tinted when a filter is on).
+- Sheet header: "N matches" on the left ("5+ matches" while more pages exist;
+  `/find` returns no total, so "N of M" needs an API change), the filter chip on
+  the right (`btn-subtle`, labelled "All books ▾", tinted when a filter is on).
 - Rows: reference (sans, 500) over a serif snippet with `<mark>` highlights.
 - "Show more" (`btn-subtle`) loads the next page.
 - Tapping a row slides to the reference view; "‹ Results" slides back.
@@ -58,7 +65,9 @@ People use every copy format, so all stay one tap away, in this order:
 - Five volume rows. The round check selects the whole volume (sends the volume
   ID); mixed shows a minus and "2 of 15". Tapping the row or its chevron expands
   book chips. Doctrine and Covenants has one book, so it is just a toggle.
-- Footer: "Clear" (`btn-subtle`) and "Show N matches" (`btn-primary`).
+- Footer: "Clear" (`btn-subtle`) and "Show matches" (`btn-primary`; no count
+  until the API returns totals). Book changes apply live; "‹ Results" and "Show
+  matches" search again only if the filter changed.
 - Chip label: "All books", a volume name, or "Ether +1".
 
 ## Share flow
