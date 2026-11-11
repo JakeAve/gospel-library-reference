@@ -13,7 +13,13 @@ import {
 } from "../lib/urlUpdater.ts";
 
 export type View =
-  | { kind: "ref"; r: Reference; back?: boolean; live?: boolean }
+  | {
+    kind: "ref";
+    r: Reference;
+    back?: boolean;
+    live?: boolean;
+    typed?: boolean;
+  }
   | { kind: "results" }
   | { kind: "filter" }
   | { kind: "choose" }
@@ -26,6 +32,19 @@ export const filters = signal<Filters>(readFiltersFromURL());
 export const results = signal<ReferenceMatch[]>([]);
 export const status = signal<"idle" | "loading" | "more" | "error">("idle");
 export const hasMore = signal(false);
+/** A sheet that came from the search bar shrinks to its title bar instead of closing. */
+export const minimized = signal(false);
+
+/** Views the search bar opened; they stay (minimized) until the bar is cleared. */
+export const fromSearch = (v: View | null) =>
+  v?.kind === "results" ||
+  (v?.kind === "ref" && !!(v.live || v.back || v.typed));
+
+/** Scrim and Escape: minimize a search sheet, close any other. */
+export function dismiss() {
+  if (fromSearch(view.peek())) minimized.value = true;
+  else go(null);
+}
 
 /** Home only: keeps ?find= and the filter params in step with the UI. */
 export function syncUrl() {
@@ -48,6 +67,7 @@ let opener: HTMLElement | null = null;
 /** Opens, changes, or (with null) closes the sheet; views slide inside it. */
 export function go(next: View | null, dir: "fwd" | "back" = "fwd") {
   if (!view.peek() && next) opener = document.activeElement as HTMLElement;
+  minimized.value = false;
   const apply = () => {
     view.value = next;
     if (!next) {
@@ -88,9 +108,11 @@ export function liveRef() {
     const r = asRef(query.value);
     const v = view.peek();
     if (r) {
-      if (isLive(v)) view.value = { kind: "ref", r, live: true };
-      else go({ kind: "ref", r, live: true });
-    } else if (isLive(v)) go(null);
+      if (isLive(v)) {
+        view.value = { kind: "ref", r, live: true };
+        minimized.value = false;
+      } else go({ kind: "ref", r, live: true });
+    } else if (isLive(v) || (!query.value.trim() && fromSearch(v))) go(null);
   });
 }
 
@@ -100,8 +122,10 @@ export function submit() {
   if (!q) return;
   const r = asRef(q);
   if (r) {
-    if (view.peek()) view.value = { kind: "ref", r };
-    else go({ kind: "ref", r });
+    if (view.peek()) {
+      view.value = { kind: "ref", r, typed: true };
+      minimized.value = false;
+    } else go({ kind: "ref", r, typed: true });
     return;
   }
   go({ kind: "results" });

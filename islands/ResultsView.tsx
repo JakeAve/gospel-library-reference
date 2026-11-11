@@ -33,9 +33,16 @@ const Skeleton = () => (
   </div>
 );
 
+/** "Searching" or "12+ matches"; the results head and the minimized bar. */
+export function matchLabel() {
+  const n = results.value.length;
+  return status.value === "loading"
+    ? "Searching"
+    : `${n}${hasMore.value ? "+" : ""} match${n === 1 ? "" : "es"}`;
+}
+
 export default function ResultsView() {
   const list = results.value;
-  const n = list.length;
   const s = status.value;
   const label = filterLabel(filters.value);
   const filtered = label !== "All books";
@@ -43,11 +50,7 @@ export default function ResultsView() {
   return (
     <>
       <div class="sheet-head split">
-        <h2 aria-live="polite">
-          {s === "loading"
-            ? "Searching"
-            : `${n}${hasMore.value ? "+" : ""} match${n === 1 ? "" : "es"}`}
-        </h2>
+        <h2 aria-live="polite">{matchLabel()}</h2>
         <button
           type="button"
           class={filtered ? "btn-subtle tint" : "btn-subtle"}
@@ -84,7 +87,7 @@ export default function ResultsView() {
             </button>
           </div>
         )}
-        {s === "idle" && !n && (
+        {s === "idle" && !list.length && (
           <div class="center">
             <p class="note">
               No matches for “{query.value.trim()}”
