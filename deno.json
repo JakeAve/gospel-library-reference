@@ -33,7 +33,8 @@
     "@preact/signals": "npm:@preact/signals@^2.9.0",
     "vite": "npm:vite@^7.1.3",
     "@types/babel__core": "npm:@types/babel__core@^7.20.5",
-    "lean-qr": "npm:lean-qr@^2.7.4"
+    "lean-qr": "npm:lean-qr@^2.7.4",
+    "fastest-levenshtein": "npm:fastest-levenshtein@^1.0.16"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

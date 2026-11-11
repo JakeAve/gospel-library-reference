@@ -39,22 +39,33 @@ function Tile(
   );
 }
 
-export default function RefView({ r, back }: { r: Reference; back?: boolean }) {
-  const [verse, setVerse] = useState(r.content ?? "");
+export default function RefView(
+  { r, back, live }: { r: Reference; back?: boolean; live?: boolean },
+) {
+  const [verse, setVerse] = useState(r.content ?? findSaved(r)?.content ?? "");
   const [error, setError] = useState("");
   const loading = !verse && !error && !!r.api;
   const mine = findSaved(r);
 
   useEffect(() => {
-    if (r.content || !r.api) return;
-    fetchContent(r.api).then(
-      (text) => {
-        setVerse(text);
-        const s = findSaved(r);
-        if (s) addContent(s.id, text).then(refreshSaved, () => {});
-      },
-      (e) => setError((e as Error).message),
-    );
+    if (verse || !r.api) return;
+    // While typing, wait for a pause so each keystroke doesn't hit the API.
+    let gone = false;
+    const load = () =>
+      fetchContent(r.api!).then(
+        (text) => {
+          if (gone) return;
+          setVerse(text);
+          const s = findSaved(r);
+          if (s) addContent(s.id, text).then(refreshSaved, () => {});
+        },
+        (e) => gone || setError((e as Error).message),
+      );
+    const t = setTimeout(load, live ? 300 : 0);
+    return () => {
+      gone = true;
+      clearTimeout(t);
+    };
   }, [r]);
 
   async function toggleSave() {

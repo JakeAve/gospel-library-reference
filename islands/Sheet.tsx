@@ -10,7 +10,14 @@ import { ChooseView, QrView } from "./ShareView.tsx";
 function render(v: View) {
   switch (v.kind) {
     case "ref":
-      return <RefView key={v.r.reference} r={v.r} back={v.back} />;
+      return (
+        <RefView
+          key={v.r.reference}
+          r={v.r}
+          back={v.back}
+          live={v.live}
+        />
+      );
     case "results":
       return <ResultsView />;
     case "filter":
@@ -30,14 +37,19 @@ export default function Sheet() {
   const v = view.value;
   const dialog = useRef<HTMLDialogElement>(null);
   const isOpen = !!v;
+  // A live reference follows the search bar, so typing keeps focus there.
+  const takesFocus = isOpen && !(v.kind === "ref" && v.live);
 
   useEffect(() => {
     if (!isOpen) return;
-    dialog.current?.focus();
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && go(null);
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen]);
+
+  useEffect(() => {
+    if (takesFocus) dialog.current?.focus();
+  }, [takesFocus]);
 
   if (!v) return null;
   return (
