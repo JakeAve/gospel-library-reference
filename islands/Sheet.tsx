@@ -1,9 +1,9 @@
 import type { ComponentChildren } from "preact";
 import { useEffect, useRef } from "preact/hooks";
-import { go, type View, view } from "./state.ts";
+import { dismiss, fromSearch, minimized, type View, view } from "./state.ts";
 import { Icon } from "./Icons.tsx";
 import RefView from "./RefView.tsx";
-import ResultsView from "./ResultsView.tsx";
+import ResultsView, { matchLabel } from "./ResultsView.tsx";
 import FilterView from "./FilterView.tsx";
 import { ChooseView, QrView } from "./ShareView.tsx";
 
@@ -31,18 +31,20 @@ function render(v: View) {
 
 /**
  * The one sheet. Non-modal on purpose, so the search bar stays usable while
- * it's open; the scrim and Escape close it, and go(null) returns focus.
+ * it's open; the scrim and Escape close it, and go(null) returns focus. A
+ * sheet from the search bar minimizes instead, and its grab bar toggles it.
  */
 export default function Sheet() {
   const v = view.value;
   const dialog = useRef<HTMLDialogElement>(null);
   const isOpen = !!v;
+  const min = minimized.value;
   // A live reference follows the search bar, so typing keeps focus there.
   const takesFocus = isOpen && !(v.kind === "ref" && v.live);
 
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && go(null);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && dismiss();
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen]);
@@ -54,9 +56,33 @@ export default function Sheet() {
   if (!v) return null;
   return (
     <>
-      <div class="scrim" onClick={() => go(null)} />
-      <dialog open ref={dialog} tabIndex={-1} class="sheet glass">
-        <div class="grab" aria-hidden="true" />
+      {!min && <div class="scrim" onClick={dismiss} />}
+      <dialog
+        open
+        ref={dialog}
+        tabIndex={-1}
+        class={min ? "sheet glass min" : "sheet glass"}
+      >
+        {fromSearch(v)
+          ? (
+            <button
+              type="button"
+              class="grab-bar"
+              aria-expanded={!min}
+              aria-label={min ? undefined : "Minimize"}
+              title={min ? "Expand" : "Minimize"}
+              onClick={() => minimized.value = !min}
+            >
+              <span class="grab" aria-hidden="true" />
+              {min && (
+                <span class="grab-title">
+                  {v.kind === "ref" ? v.r.reference : matchLabel()}
+                  <Icon name="chevron-up" />
+                </span>
+              )}
+            </button>
+          )
+          : <div class="grab" aria-hidden="true" />}
         <div class="view">{render(v)}</div>
       </dialog>
     </>
