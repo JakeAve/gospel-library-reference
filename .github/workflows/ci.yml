@@ -39,7 +39,7 @@ jobs:
         with:
           deno-version: v2.x
       - run: deno install
-      - run: deno check **/*.ts **/*.tsx
+      - run: deno check .
 
   test:
     runs-on: ubuntu-latest
