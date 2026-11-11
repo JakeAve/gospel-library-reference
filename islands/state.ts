@@ -175,3 +175,19 @@ export function backToResults() {
   go({ kind: "results" }, "back");
   if (key() !== searchedKey) search();
 }
+
+// The last /s/ list opened, so Home can link back to it. A QR scan opens a new
+// tab or the installed app, where Back can't reach it (iOS standalone has none).
+// ponytail: one list only; keep a short history if teachers share several.
+const SHARED_KEY = "lastShared";
+export const lastShared = signal<string | null>(store());
+function store(digits?: string | null) {
+  try {
+    if (digits === undefined) return localStorage.getItem(SHARED_KEY);
+    if (digits) localStorage.setItem(SHARED_KEY, digits);
+    else localStorage.removeItem(SHARED_KEY);
+  } catch { /* private mode: the link just won't persist */ }
+  return digits ?? null;
+}
+export const rememberShared = (digits: string | null) =>
+  lastShared.value = store(digits);

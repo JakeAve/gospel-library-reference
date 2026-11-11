@@ -1,7 +1,7 @@
 import { useSignal } from "@preact/signals";
 import type { Reference } from "@jakeave/scripture-ref/types";
 import { add, getAll } from "../lib/indexedDB.ts";
-import { refreshSaved } from "./state.ts";
+import { refreshSaved, rememberShared } from "./state.ts";
 
 const plural = (n: number) => `${n} reference${n === 1 ? "" : "s"}`;
 
@@ -26,6 +26,7 @@ export default function SaveAllBtn({ refs }: { refs: Reference[] }) {
       // A readonly read queues behind the writes above, so they're committed
       // before we say "Saved".
       await refreshSaved();
+      rememberShared(null); // it's all in the saved list now
       result.value = { saved, existing: refs.length - saved };
     } catch {
       // Retrying is safe: dedup re-reads getAll(), so a partial save is fine.

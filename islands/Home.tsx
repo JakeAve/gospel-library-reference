@@ -4,9 +4,11 @@ import Header from "../components/Header.tsx";
 import {
   asRef,
   go,
+  lastShared,
   liveRef,
   query,
   refreshSaved,
+  rememberShared,
   saved,
   submit,
   syncUrl,
@@ -14,6 +16,7 @@ import {
 import { Icon, IconBtn } from "./Icons.tsx";
 import Sheet from "./Sheet.tsx";
 import { openShare } from "./ShareView.tsx";
+import { decodeShared } from "../lib/shareList.ts";
 
 /** A saved or shared reference; the whole row opens the reference sheet. */
 export function RefRow({ r }: { r: Reference }) {
@@ -29,6 +32,27 @@ export function RefRow({ r }: { r: Reference }) {
       </span>
       <Icon name="chevron-right" />
     </button>
+  );
+}
+
+/** Link back to the last shared list, for tabs that can't go Back to it. */
+function SharedReturn() {
+  const digits = lastShared.value;
+  const n = digits ? decodeShared(digits).length : 0;
+  if (!n) return null;
+  return (
+    <div class="row shared-return">
+      <a class="row-main" href={`/s/${digits}`}>
+        <span class="row-title">Shared with you</span>
+        <span class="sub">{n} {n === 1 ? "reference" : "references"}</span>
+      </a>
+      <IconBtn
+        icon="x"
+        label="Dismiss"
+        neutral
+        onClick={() => rememberShared(null)}
+      />
+    </div>
   );
 }
 
@@ -92,6 +116,7 @@ export default function Home() {
       <div class="page">
         <Header />
         <main>
+          <SharedReturn />
           <div class="section-head">
             <h2>Saved · {list.length}</h2>
             {list.length > 0 && (

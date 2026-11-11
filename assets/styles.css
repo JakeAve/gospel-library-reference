@@ -868,3 +868,15 @@ body:not(:has(.searchbar)) .sheet {
   font-size: .8125rem;
   color: var(--ink-2);
 }
+
+/* Shared list: back link and Home's return row */
+.back {
+  margin-left: -.8rem;
+}
+.shared-return {
+  margin: .5rem 0;
+}
+.shared-return > a {
+  color: inherit;
+  text-decoration: none;
+}
