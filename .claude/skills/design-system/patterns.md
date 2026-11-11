@@ -46,6 +46,9 @@ People use every copy format, so all stay one tap away, in this order:
   shows "Removed from saved" with Undo, which restores the same row.
 - A range's text is one string from the API, so there are no inline verse
   numbers.
+- A whole chapter doesn't load its text on its own (too big, especially on
+  phones); a tinted "Load text" button fetches it. Verses and ranges load as
+  before.
 - Saved rows and search results open this sheet. Rows have no copy buttons of
   their own.
 
