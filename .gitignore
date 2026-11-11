@@ -18,7 +18,5 @@ node_modules/
 .impeccable/
 .worktrees/
 .claude/worktrees/
+.claude/plans/
 .claude/settings.local.json
-
-# Specs and plans (local only)
-docs/
