@@ -1,32 +1,25 @@
-import { type Context, page, type PageProps } from "fresh";
 import type { Reference } from "@jakeave/scripture-ref/types";
-import { decode } from "../../lib/refCodec.ts";
-import Header from "../../components/Header.tsx";
-import ScriptureReference from "../../components/ScriptureReference.tsx";
-import { ToastProvider } from "../../islands/Contexts/Toast.tsx";
-import SaveAllBtn from "../../islands/SaveAllBtn.tsx";
-
-interface Data {
-  refs: Reference[];
-}
+import { decode } from "../lib/refCodec.ts";
+import Header from "./Header.tsx";
+import ScriptureReference from "./ScriptureReference.tsx";
+import { ToastProvider } from "../islands/Contexts/Toast.tsx";
+import SaveAllBtn from "../islands/SaveAllBtn.tsx";
 
 // 20 refs is ~124 digits; 2000 is generous headroom. BigInt decode is O(n^2),
 // so cap it before decoding rather than let arbitrarily long input hang.
 const MAX_DIGITS = 2000;
 
-export function handler(ctx: Context<unknown>) {
-  let refs: Reference[] = [];
+export function decodeShared(digits: string): Reference[] {
   try {
-    if (ctx.params.digits.length <= MAX_DIGITS) {
-      refs = decode(ctx.params.digits);
-    }
+    if (digits.length <= MAX_DIGITS) return decode(digits);
   } catch (e) {
     if (!(e instanceof RangeError)) throw e;
   }
-  return page<Data>({ refs }, refs.length ? undefined : { status: 400 });
+  return [];
 }
 
-export default function SharedList({ data: { refs } }: PageProps<Data>) {
+export default function SharedList({ digits }: { digits: string }) {
+  const refs = decodeShared(digits);
   if (!refs.length) {
     return (
       <main>

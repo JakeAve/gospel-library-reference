@@ -1,11 +1,11 @@
 const PRE_CACHE = "pre-cache-v1";
-const RUNTIME = "runtime";
+// v2: dropped the Fresh-era cache when the app moved to GitHub Pages.
+const RUNTIME = "runtime-v2";
 
 // Vite content-hashes JS/CSS output on every build, so exact asset paths
 // can't be listed here. They get picked up by the runtime cache below on
 // first fetch instead of being precached at install.
 const PRE_CACHE_URLS = [
-  "/register.js",
   "/favicon.ico",
   "/",
 ];
@@ -15,7 +15,7 @@ self.addEventListener("install", (event) => {
     caches
       .open(PRE_CACHE)
       .then((cache) => cache.addAll(PRE_CACHE_URLS))
-      .then(self.skipWaiting()),
+      .then(() => self.skipWaiting()),
   );
 });
 

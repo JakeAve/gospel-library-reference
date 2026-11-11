@@ -1,14 +1,10 @@
-import { defineConfig, loadEnv } from "vite";
-import { fresh } from "@fresh/plugin-vite";
+import { defineConfig } from "vite";
+import deno from "@deno/vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, Deno.cwd(), "");
-  for (const [key, value] of Object.entries(env)) {
-    Deno.env.set(key, value);
-  }
-
-  return {
-    plugins: [fresh(), tailwindcss()],
-  };
+export default defineConfig({
+  plugins: [deno(), tailwindcss()],
+  publicDir: "static",
+  envPrefix: "API_",
+  esbuild: { jsx: "automatic", jsxImportSource: "preact" },
 });
