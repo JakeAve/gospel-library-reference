@@ -44,11 +44,13 @@ export default function RefView(
 ) {
   const [verse, setVerse] = useState(r.content ?? findSaved(r)?.content ?? "");
   const [error, setError] = useState("");
-  const loading = !verse && !error && !!r.api;
+  // A whole chapter is long, so it loads only when asked for.
+  const [wanted, setWanted] = useState(r.verses.length > 0);
+  const loading = wanted && !verse && !error && !!r.api;
   const mine = findSaved(r);
 
   useEffect(() => {
-    if (verse || !r.api) return;
+    if (!wanted || verse || !r.api) return;
     // While typing, wait for a pause so each keystroke doesn't hit the API.
     let gone = false;
     const load = () =>
@@ -61,12 +63,12 @@ export default function RefView(
         },
         (e) => gone || setError((e as Error).message),
       );
-    const t = setTimeout(load, live ? 300 : 0);
+    const t = setTimeout(load, live && r.verses.length ? 300 : 0);
     return () => {
       gone = true;
       clearTimeout(t);
     };
-  }, [r]);
+  }, [r, wanted]);
 
   async function toggleSave() {
     if (mine) {
@@ -130,6 +132,17 @@ export default function RefView(
           </div>
         </div>
 
+        {!wanted && !verse && !!r.api && (
+          <div class="load">
+            <button
+              type="button"
+              class="btn-subtle tint"
+              onClick={() => setWanted(true)}
+            >
+              Load text
+            </button>
+          </div>
+        )}
         {loading && (
           <div class="skel" aria-label="Loading verse">
             <span />

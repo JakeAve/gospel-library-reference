@@ -517,6 +517,9 @@ body:not(:has(.searchbar)) .sheet {
   vertical-align: -.35rem;
   margin-right: .3rem;
 }
+.load {
+  margin: .75rem 0 1rem;
+}
 .tiles {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
