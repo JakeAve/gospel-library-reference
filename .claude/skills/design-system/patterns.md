@@ -13,8 +13,11 @@
 
 - Top: the small letter-spaced wordmark on the left; GitHub, version, and update
   as small `--ink-2` items on the right.
-- Submitting text with a number and fewer than four words opens it as a
-  reference; anything else is a keyword search.
+- As you type a reference ("2 ne", "alma 32"), the sheet shows it live and
+  updates in place; focus stays in the search bar. `lib/looksLikeRef.ts` decides
+  what reads as a reference, so the first letters of a quote don't flash a book.
+  Enter commits a reference (focus moves into the sheet) or runs the keyword
+  search.
 - Body: the saved list ("Saved · N" with a subtle Share button).
 - Bottom: the floating search bar.
 - Everything secondary (a reference, results, the filter, sharing) opens in the
@@ -43,6 +46,9 @@ People use every copy format, so all stay one tap away, in this order:
   shows "Removed from saved" with Undo, which restores the same row.
 - A range's text is one string from the API, so there are no inline verse
   numbers.
+- A whole chapter doesn't load its text on its own (too big, especially on
+  phones); a tinted "Load text" button fetches it. Verses and ranges load as
+  before.
 - Saved rows and search results open this sheet. Rows have no copy buttons of
   their own.
 

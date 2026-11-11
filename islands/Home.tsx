@@ -1,7 +1,16 @@
 import { useEffect, useRef } from "preact/hooks";
 import type { Reference } from "@jakeave/scripture-ref/types";
 import Header from "../components/Header.tsx";
-import { go, query, refreshSaved, saved, submit, syncUrl } from "./state.ts";
+import {
+  asRef,
+  go,
+  liveRef,
+  query,
+  refreshSaved,
+  saved,
+  submit,
+  syncUrl,
+} from "./state.ts";
 import { Icon, IconBtn } from "./Icons.tsx";
 import Sheet from "./Sheet.tsx";
 import { openShare } from "./ShareView.tsx";
@@ -69,9 +78,12 @@ function SearchBar() {
 export default function Home() {
   useEffect(() => {
     refreshSaved();
-    // ?find= round-trips on reload.
-    if (query.peek().trim()) submit();
-    return syncUrl();
+    // ?find= round-trips on reload: liveRef reopens a reference, a quote searches.
+    const q = query.peek().trim();
+    if (q && !asRef(q)) submit();
+    const stopLive = liveRef();
+    const stopUrl = syncUrl();
+    return () => (stopLive(), stopUrl());
   }, []);
 
   const list = saved.value;

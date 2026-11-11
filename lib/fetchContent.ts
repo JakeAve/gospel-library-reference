@@ -2,7 +2,8 @@ import { ContentFetchError } from "../errors/ContentFetchError.ts";
 
 const DEFAULT_ERROR = "Could not get content";
 
-export async function fetchContent(path: string): Promise<string> {
+/** One string per verse (a range comes back as a single string). */
+export async function fetchContent(path: string): Promise<string[]> {
   try {
     const apiUrl = import.meta.env.API_URL;
 
@@ -22,7 +23,7 @@ export async function fetchContent(path: string): Promise<string> {
 
     const json = await resp.json();
 
-    return json.content.join(" ");
+    return json.content;
   } catch (e) {
     if (e instanceof ContentFetchError) {
       throw e;

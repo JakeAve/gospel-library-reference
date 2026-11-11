@@ -3,7 +3,7 @@ import type { Reference, ReferenceMatch } from "@jakeave/scripture-ref/types";
 import { parseRef } from "@jakeave/scripture-ref/client";
 import { getAll, type RefWithId } from "../lib/indexedDB.ts";
 import { findReference } from "../lib/findReference.ts";
-import { determineTextType } from "../lib/determineTextType.ts";
+import { looksLikeRef } from "../lib/looksLikeRef.ts";
 import type { Filters } from "../lib/books.ts";
 import {
   addFiltersToUrl,
@@ -13,7 +13,7 @@ import {
 } from "../lib/urlUpdater.ts";
 
 export type View =
-  | { kind: "ref"; r: Reference; back?: boolean }
+  | { kind: "ref"; r: Reference; back?: boolean; live?: boolean }
   | { kind: "results" }
   | { kind: "filter" }
   | { kind: "choose" }
@@ -71,12 +71,38 @@ let searchedKey = "";
 let token = 0;
 const key = () => JSON.stringify([query.value.trim(), filters.value]);
 
-/** A reference (has a number, under four words) opens it; anything else searches words. */
+/** The reference `q` names, or null when it reads as a quote. */
+export function asRef(q: string): Reference | null {
+  const r = parseRef(q);
+  return looksLikeRef(q, r) ? r : null;
+}
+
+const isLive = (v: View | null) => v?.kind === "ref" && !!v.live;
+
+/**
+ * Home only: as you type a reference, the sheet shows it, updating in place;
+ * when the text stops reading as a reference, the live sheet closes.
+ */
+export function liveRef() {
+  return effect(() => {
+    const r = asRef(query.value);
+    const v = view.peek();
+    if (r) {
+      if (isLive(v)) view.value = { kind: "ref", r, live: true };
+      else go({ kind: "ref", r, live: true });
+    } else if (isLive(v)) go(null);
+  });
+}
+
+/** Enter: commits the reference being shown, or searches the words. */
 export function submit() {
   const q = query.value.trim();
   if (!q) return;
-  if (/\d/.test(q) && determineTextType(q) === "reference") {
-    return go({ kind: "ref", r: parseRef(q) });
+  const r = asRef(q);
+  if (r) {
+    if (view.peek()) view.value = { kind: "ref", r };
+    else go({ kind: "ref", r });
+    return;
   }
   go({ kind: "results" });
   search();

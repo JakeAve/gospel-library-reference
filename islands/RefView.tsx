@@ -39,23 +39,38 @@ function Tile(
   );
 }
 
-export default function RefView({ r, back }: { r: Reference; back?: boolean }) {
-  const [verse, setVerse] = useState(r.content ?? "");
+export default function RefView(
+  { r, back, live }: { r: Reference; back?: boolean; live?: boolean },
+) {
+  const [verse, setVerse] = useState(r.content ?? findSaved(r)?.content ?? "");
   const [error, setError] = useState("");
-  const loading = !verse && !error && !!r.api;
+  // A whole chapter is long, so it loads only when asked for.
+  const [wanted, setWanted] = useState(r.verses.length > 0);
+  const loading = wanted && !verse && !error && !!r.api;
   const mine = findSaved(r);
 
   useEffect(() => {
-    if (r.content || !r.api) return;
-    fetchContent(r.api).then(
-      (text) => {
-        setVerse(text);
-        const s = findSaved(r);
-        if (s) addContent(s.id, text).then(refreshSaved, () => {});
-      },
-      (e) => setError((e as Error).message),
-    );
-  }, [r]);
+    if (!wanted || verse || !r.api) return;
+    // While typing, wait for a pause so each keystroke doesn't hit the API.
+    let gone = false;
+    const load = () =>
+      fetchContent(r.api!).then(
+        (parts) => {
+          if (gone) return;
+          // Chapters keep a line per verse so they can be numbered.
+          const text = parts.join(r.verses.length ? " " : "\n");
+          setVerse(text);
+          const s = findSaved(r);
+          if (s) addContent(s.id, text).then(refreshSaved, () => {});
+        },
+        (e) => gone || setError((e as Error).message),
+      );
+    const t = setTimeout(load, live && r.verses.length ? 300 : 0);
+    return () => {
+      gone = true;
+      clearTimeout(t);
+    };
+  }, [r, wanted]);
 
   async function toggleSave() {
     if (mine) {
@@ -73,6 +88,11 @@ export default function RefView({ r, back }: { r: Reference; back?: boolean }) {
   }
 
   const hasAbbr = r.book.name !== r.book.abbr;
+  // A chapter shows (and copies) one numbered verse per line.
+  const lines = !r.verses.length && verse.includes("\n")
+    ? verse.split("\n")
+    : null;
+  const text = lines ? lines.map((l, i) => `${i + 1} ${l}`).join("\n") : verse;
 
   return (
     <>
@@ -94,7 +114,7 @@ export default function RefView({ r, back }: { r: Reference; back?: boolean }) {
                 label="Copy verse and link"
                 onClick={() =>
                   copy(
-                    linkClip(r.reference, r.link, verse),
+                    linkClip(r.reference, r.link, text),
                     "Copied verse and link",
                   )}
               />
@@ -119,6 +139,17 @@ export default function RefView({ r, back }: { r: Reference; back?: boolean }) {
           </div>
         </div>
 
+        {!wanted && !verse && !!r.api && (
+          <div class="load">
+            <button
+              type="button"
+              class="btn-subtle tint"
+              onClick={() => setWanted(true)}
+            >
+              Load text
+            </button>
+          </div>
+        )}
         {loading && (
           <div class="skel" aria-label="Loading verse">
             <span />
@@ -130,10 +161,21 @@ export default function RefView({ r, back }: { r: Reference; back?: boolean }) {
           <p class="verse">
             <IconBtn
               icon="copy"
-              label="Copy verse"
-              onClick={() => copy({ plain: verse }, "Copied verse")}
+              label={lines ? "Copy chapter" : "Copy verse"}
+              onClick={() =>
+                copy(
+                  { plain: text },
+                  lines ? "Copied chapter" : "Copied verse",
+                )}
             />
-            {verse}
+            {lines
+              ? lines.map((l, i) => (
+                <span key={i} class="vline">
+                  <span class="vnum">{i + 1}</span>
+                  {l}
+                </span>
+              ))
+              : verse}
           </p>
         )}
 
