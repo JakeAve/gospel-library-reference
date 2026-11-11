@@ -1,4 +1,3 @@
-import { IS_BROWSER } from "fresh/runtime";
 import type { Reference } from "@jakeave/scripture-ref/types";
 import { parseRef } from "@jakeave/scripture-ref/client";
 
@@ -16,7 +15,7 @@ const STORE_NAME = "reference";
 function init(): Promise<
   { request: IDBOpenDBRequest; db: IDBDatabase } | null
 > {
-  if (!IS_BROWSER) return Promise.resolve(null);
+  if (!globalThis.indexedDB) return Promise.resolve(null);
 
   return new Promise((resolve) => {
     const request = globalThis.indexedDB.open(DB_NAME, DB_VERSION);

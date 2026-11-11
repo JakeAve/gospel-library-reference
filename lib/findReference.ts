@@ -10,7 +10,7 @@ export async function findReference(
   },
 ): Promise<ReferenceMatch[]> {
   try {
-    const apiUrl = globalThis.API_URL;
+    const apiUrl = import.meta.env.API_URL;
 
     if (!apiUrl) {
       throw new Error();

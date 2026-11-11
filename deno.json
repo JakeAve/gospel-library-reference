@@ -1,6 +1,6 @@
 {
   "lock": false,
-  "version": "0.1.11",
+  "version": "0.1.12",
   "minimumDependencyAge": {
     "age": "P1D",
     "exclude": ["jsr:@jakeave/scripture-ref"]
@@ -12,23 +12,21 @@
     "pre-commit": "deno task check",
     "pre-push": "deno task check && deno task test",
     "start": "vite",
-    "build": "vite build",
-    "preview": "deno serve -A --env-file _fresh/server.js",
-    "update": "deno run -A -r jsr:@fresh/update .",
+    "build": "vite build && cp dist/index.html dist/404.html",
+    "preview": "vite preview",
     "version": "deno run --allow-read=./components/Header.tsx,./deno.json --allow-write=./components/Header.tsx,./deno.json ./scripts/updateVersion.ts"
   },
   "lint": {
     "rules": {
-      "tags": ["fresh", "recommended"]
+      "tags": ["recommended"]
     }
   },
   "fmt": {
     "exclude": ["static/"]
   },
-  "exclude": ["**/_fresh/*"],
+  "exclude": ["dist/"],
   "imports": {
-    "fresh": "jsr:@fresh/core@^2.3.3",
-    "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.1.2",
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.4",
     "@jakeave/scripture-ref": "jsr:@jakeave/scripture-ref@^0.0.11",
     "@std/assert": "jsr:@std/assert@^1.0.11",
     "preact": "npm:preact@^10.29.1",
@@ -40,7 +38,7 @@
     "lean-qr": "npm:lean-qr@^2.7.4"
   },
   "compilerOptions": {
-    "jsx": "precompile",
+    "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "types": ["vite/client"]
   },

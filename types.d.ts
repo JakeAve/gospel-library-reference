@@ -6,3 +6,7 @@ interface Book {
 }
 
 type VerseRange = (number | [number, number])[];
+
+interface ImportMetaEnv {
+  readonly API_URL?: string;
+}

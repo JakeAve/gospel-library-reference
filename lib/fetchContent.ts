@@ -1,14 +1,10 @@
 import { ContentFetchError } from "../errors/ContentFetchError.ts";
 
-declare global {
-  var API_URL: string | undefined;
-}
-
 const DEFAULT_ERROR = "Could not get content";
 
 export async function fetchContent(path: string): Promise<string> {
   try {
-    const apiUrl = globalThis.API_URL;
+    const apiUrl = import.meta.env.API_URL;
 
     if (!apiUrl) {
       throw new Error();

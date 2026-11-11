@@ -23,3 +23,15 @@ deno task start
 ```
 
 This will watch the project directory and restart as necessary.
+
+## Build and deploy
+
+```
+deno task build
+deno task preview
+```
+
+`build` writes a static site to `dist/` (plain Vite + Preact, no server).
+Pushing to `main` runs `.github/workflows/pages.yml`, which publishes `dist/` to
+GitHub Pages. `dist/404.html` is a copy of `index.html` so `/s/<digits>` share
+links load the app.
