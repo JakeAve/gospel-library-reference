@@ -11,8 +11,6 @@
   --acc: #2b4c9b;
   --on-acc: #ffffff;
   --acc-bg: rgb(43 76 155 / .1);
-  --qr-bg: #ffffff;
-  --qr-ink: #000000;
 
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --serif: "Literata", Georgia, serif;
@@ -739,12 +737,14 @@ body:not(:has(.searchbar)) .sheet {
   place-items: center;
   padding: .75rem;
   border-radius: var(--r-row);
-  background: var(--qr-bg);
+  background: var(--card);
 }
-.qr img {
+/* The QR is a mask so its modules take the theme's ink blue. */
+.qr-code {
   width: min(15rem, 62vw);
   aspect-ratio: 1;
-  image-rendering: pixelated;
+  background: var(--acc);
+  mask: var(--qr) center / contain no-repeat;
 }
 .qr-list {
   margin: 1rem 0 .5rem;
